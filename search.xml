@@ -4,13 +4,67 @@
   
     
     <entry>
+      <title>post</title>
+      <link href="/2024/01/28/galgame-rkr/"/>
+      <url>/2024/01/28/galgame-rkr/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>混沌工程随记</title>
+      <link href="/2024/01/26/chaos/"/>
+      <url>/2024/01/26/chaos/</url>
+      
+        <content type="html"><![CDATA[<p>混沌工程并不是在生产环境中搞破坏。搞破坏很容易但完成下述事情很难：减小爆炸半径，对安全性进行批判性思考，确定漏洞是否值得修复，决定是否应该进行实验。<br>寻找做对的地方比寻找做错的地方提供的信息多得多，因为对于复杂系统而言，故障可能是因为熵增而导致的系统性错误，这些并不能被预测到。而混沌工程通过实验认识到系统的属性信息，从而可以通过测试的方法规避掉错误，让团队拥有更好韧性。 对与让系统更加健壮而言，一味的冗余只会掩盖问题的存在，同时冗余的同时引入了故障，发生了熵增。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 工程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 工程 </tag>
+            
+            <tag> 混沌工程 </tag>
+            
+            <tag> 测试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
-      <link href="/2023/04/16/hello-world/"/>
-      <url>/2023/04/16/hello-world/</url>
+      <link href="/2023/11/29/hello-world/"/>
+      <url>/2023/11/29/hello-world/</url>
       
         <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
       
       
+      <categories>
+          
+          <category> Hexo </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Hexo blog </tag>
+            
+        </tags>
       
     </entry>
     
