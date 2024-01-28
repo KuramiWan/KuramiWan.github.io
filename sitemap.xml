@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://kuramiwan.github.io/link/index.html</loc>
+    
+    <lastmod>2024-01-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/2024/01/28/galgame-rkr/</loc>
+    
+    <lastmod>2024-01-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/2024/01/26/chaos/</loc>
+    
+    <lastmod>2024-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/2023/11/29/hello-world/</loc>
+    
+    <lastmod>2024-01-25</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/categories/index.html</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/index.html</loc>
+    
+    <lastmod>2023-04-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  <url>
+    <loc>https://kuramiwan.github.io/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/galgame/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/rkr/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/Hexo-blog/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://kuramiwan.github.io/categories/galgame/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/categories/%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/categories/Hexo/</loc>
+    <lastmod>2024-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+</urlset>
