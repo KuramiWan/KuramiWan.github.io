@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>全栈测试随记</title>
+      <link href="/2024/01/31/fullStackTest/"/>
+      <url>/2024/01/31/fullStackTest/</url>
+      
+        <content type="html"><![CDATA[<p>本文将记录关于《Full Stack Testing》这本书中的诸多方法论与测试技巧</p><h1 id="手动探索测试"><a href="#手动探索测试" class="headerlink" title="手动探索测试"></a>手动探索测试</h1><p>手动探索性测试一般处于开发后进行，探索性测试强调所有三个角度（业务需求，技术实现细节，最终用户需求）结合起来，并从这些所有角度去挑战在过去业务角度，功能开发角度中被认为对的事情。相较于传统手动测试，完成特定测试任务以满足某一需求文档中的验收标注，手动探索测试更为自由，更为全局。手动探索测试在特定的测试环境中随意干预各种应用程序组件，例如数据库，服务或者后台进程。</p><h2 id="探索性测试框架"><a href="#探索性测试框架" class="headerlink" title="探索性测试框架"></a>探索性测试框架</h2><h3 id="等价类划分"><a href="#等价类划分" class="headerlink" title="等价类划分"></a>等价类划分</h3><p>假如有一个正数的输入值x，有x小于500，x在500 与1500之间，大于1500，针对三种情况分别有三个不同的策略。如何进行测试？</p><p>可以划分为三个等价类 {0-500，500-1500，1500- },只需要在其区间内各区三个数就可覆盖所有情况。</p><h3 id="边界值分析"><a href="#边界值分析" class="headerlink" title="边界值分析"></a>边界值分析</h3><p>边界值分析法是等价类的扩展方法。它将类之间模糊不清的边界值也纳入测试，{0，1，500，501，1500，1501}</p><h3 id="状态转换"><a href="#状态转换" class="headerlink" title="状态转换"></a>状态转换</h3><p>在程序的行为根据历史记录发生变化时可以使用状态转换将状态过程可视化。比如登录三次失败三次账号锁定。</p><p><img src="https://i.miji.bid/2024/01/31/6d46e770978a11be346d7fbd3da39c9a.webp" alt="状态转换"></p><h3 id="决策表"><a href="#决策表" class="headerlink" title="决策表"></a>决策表</h3><p>在面对逻辑关系（And&amp;or）时将可能结果列出。类似真值表</p><h3 id="因果图"><a href="#因果图" class="headerlink" title="因果图"></a>因果图</h3><p>直接画出因果关系。<br><img src="https://i.miji.bid/2024/01/31/1a3f9881383f43d7582d1217ad679242.webp" alt="因果图"></p><h3 id="成对测试"><a href="#成对测试" class="headerlink" title="成对测试"></a>成对测试</h3><p>或许在测试中会遇到多个条件组合需要测试的情况，在复杂情况下如果通过穷举则非常困难。比如目前有三个条件每一个条件都有两种情况 A(1,2), B(1,2), C(1,2)。我们需要测试 2 * 2 * 2 种情况才能完全覆盖。<br>我们如何测试单因子和双因子错误率？</p><p>单错误因子情况下假设 A(1) 为错误因子。我们<strong>至少</strong>需要  {A(1),B(1),C(1)} &amp; {A(2),B(1),C(1)} ，两组数据就能测出。</p><p>双错误因子情况下假设 {A(1),B(1)} 为错误因子。我们<strong>至少</strong>需要 {A(1),B(1),C(1)} &amp; {A(1),B(1),C(2)} &amp; {A(1),B(2),C(1)} &amp; {A(2),B(1),C(1)} 四组数据才能测出。</p><p>而三因子情况下我们需要全部8组数据才能测出。</p><p>研究发现单因子和双因子导致错误率在80%左右，而三因子错误率在20%。 所以只需要测试单因子与双因子情况就能基本覆盖错误。同时减少50%的测试量。<br><a href="https://pairwise.teremokgames.com/">成对测试算法工具</a></p><h3 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h3><p>随机抽样检查</p><h3 id="经验法"><a href="#经验法" class="headerlink" title="经验法"></a>经验法</h3><p>根据我的经验，以下是经常出现的几种类型的错误：</p><ul><li><p>缺少对无效&#x2F;空白输入值的验证，并且缺少指导用户更正输入的适当错误消息</p></li><li><p>数据验证、技术和业务错误返回的 HTTP 状态代码不明确</p></li><li><p>特定于域、数据类型、状态等的未处理的边界条件</p></li><li><p>UI 端未处理的技术错误，例如服务器关闭、响应超时等</p></li><li><p>转换、数据刷新和导航期间的 UI 问题（例如抖动和残留）</p></li><li><p>SQL 关键字_like_和_equals_可以互换使用，完全改变结果</p></li><li><p>未清除的缓存和未定义的会话超时</p></li><li><p>当用户单击浏览器中的后退按钮时重新发布请求</p></li><li><p>从不同操作系统平台上传文件时缺少文件格式验证</p></li></ul><h2 id="探索功能"><a href="#探索功能" class="headerlink" title="探索功能"></a>探索功能</h2><p><strong>对一个全新的应用进行测试时，你应该想到哪些测试思路?</strong></p><h3 id="功能性用户流程"><a href="#功能性用户流程" class="headerlink" title="功能性用户流程"></a>功能性用户流程</h3><p>测试用户完整使用应用的流程，在这个测试可以使用上文所介绍的测试框架。<br><strong>重复该流程</strong><br>在完成一次测试后不刷新状态，重新测试。<br><strong>多用户流程</strong><br>多用户并发操作时会发生什么？</p><h3 id="失败和错误处理"><a href="#失败和错误处理" class="headerlink" title="失败和错误处理"></a>失败和错误处理</h3><p>当服务器返回错误的信息，前端UI应该如何处理。</p><h3 id="用户界面的观感"><a href="#用户界面的观感" class="headerlink" title="用户界面的观感"></a>用户界面的观感</h3><p>不是指用户界面的设计美感，而是关于用户体验方面，比如某一描述性文字是否有足够的空间显示延迟时的等待体验，图片的质量等等方面。</p><h3 id="跨职能方面"><a href="#跨职能方面" class="headerlink" title="跨职能方面"></a>跨职能方面</h3><p>安全，性能，可访问性，身份验证，授权，隐私，可审查性等等方面。</p><h2 id="手动探索测试策略"><a href="#手动探索测试策略" class="headerlink" title="手动探索测试策略"></a>手动探索测试策略</h2><p>对于一个陌生的应用可以从一下五个方面思考测试策略。</p><h3 id="用户角色"><a href="#用户角色" class="headerlink" title="用户角色"></a>用户角色</h3><p>一个应用可能有不同的角色，扮演不同的角色去了解应用。</p><h3 id="领域"><a href="#领域" class="headerlink" title="领域"></a>领域</h3><p>每一个行业，每一个业务领域都有独特的工作流程，你需要了解应用的领域知识。</p><h3 id="业务重点"><a href="#业务重点" class="headerlink" title="业务重点"></a>业务重点</h3><p>在复杂业务上，考虑项目的可扩展性与项目整体。</p><h3 id="基础设施和配置"><a href="#基础设施和配置" class="headerlink" title="基础设施和配置"></a>基础设施和配置</h3><p>了解实际部署应用机器的如构件的各项配置是必要的，它能帮你观察是否出现了异常的情况。</p><h3 id="组织架构"><a href="#组织架构" class="headerlink" title="组织架构"></a>组织架构</h3><p>组织架构也是测试的切入点。例如，如果架构涉及 Web 服务，您可能需要对 API 执行探索性测试，而不仅仅是探索 UI。同样，如果应用程序涉及事件流，那么探索异步通信的案例就变得很重要。</p><h2 id="测试工具"><a href="#测试工具" class="headerlink" title="测试工具"></a>测试工具</h2><h3 id="思维导图可能会帮到你"><a href="#思维导图可能会帮到你" class="headerlink" title="思维导图可能会帮到你"></a>思维导图可能会帮到你</h3><p><img src="https://i.miji.bid/2024/01/31/d05a16d7f0bbbc5cf217ef7547090630.webp" alt="思维导图"></p><h3 id="Apifox"><a href="#Apifox" class="headerlink" title="Apifox"></a><a href="https://apifox.com/">Apifox</a></h3><p>集接口测试，在线mock，环境变量，脚本于一体的强大测试工具，缺点是强制登录。</p><h3 id="测试环境卫生"><a href="#测试环境卫生" class="headerlink" title="测试环境卫生"></a>测试环境卫生</h3><h3 id="共享测试环境与专用测试环境"><a href="#共享测试环境与专用测试环境" class="headerlink" title="共享测试环境与专用测试环境"></a>共享测试环境与专用测试环境</h3><p>一个团队一个测试环境。</p><h3 id="测试数据卫生"><a href="#测试数据卫生" class="headerlink" title="测试数据卫生"></a>测试数据卫生</h3><p>测试数据属于权限范围测试人员的行为，他们应该遵循某些实践，以确保他们不会无意中破坏自己的探索。特别是，在同一部署中继续测试新功能时，请注意过时的数据和配置。避免此类复杂情况的建议是，每当开始新的用户故事时，就部署新的构建（假设新的部署将清除旧的数据和配置并将应用程序恢复到新状态）。另一种选择是为每个用户故事（例如新用户）创建一组新的测试数据，而不是探索可能处于不同状态的现有用户。</p><p>当有数百个链接表时，测试数据创建可能会很复杂。然后，一个选项是让新部署删除旧数据并将其替换为一组标准测试数据，或者让 SQL 脚本创建适当的新测试数据作为部署的一部分。</p><h3 id="自治团队"><a href="#自治团队" class="headerlink" title="自治团队"></a>自治团队</h3><p>团队成员可能没有登录凭据或更新配置、查看应用程序日志或设置存根所需的权限；要执行此类操作，他们需要向 DevOps 或系统维护团队请求帮助。这在探索性测试期间尤其令人沮丧，因为测试人员可能需要访问所有应用程序组件。确保团队是自主的并且能够访问所需的一切，这将减少由于外部依赖性而导致的延迟并实现顺利交付。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 测试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 测试 </tag>
+            
+            <tag> 全栈测试 </tag>
+            
+            <tag> 方法论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【galgame】rkr三部曲感想——悲剧是成年人的童话</title>
       <link href="/2024/01/28/galgame-rkr/"/>
       <url>/2024/01/28/galgame-rkr/</url>
@@ -23,8 +52,6 @@
             <tag> galgame </tag>
             
             <tag> rkr </tag>
-            
-            <tag> 测试 </tag>
             
         </tags>
       
@@ -49,36 +76,11 @@
       
         <tags>
             
-            <tag> 测试 </tag>
-            
             <tag> 工程 </tag>
             
             <tag> 混沌工程 </tag>
             
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2023/11/29/hello-world/"/>
-      <url>/2023/11/29/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Hexo </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Hexo blog </tag>
+            <tag> 测试 </tag>
             
         </tags>
       
