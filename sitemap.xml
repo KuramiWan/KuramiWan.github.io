@@ -2,18 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://kuramiwan.github.io/2024/01/31/fullStackTest/</loc>
+    <loc>https://kuramiwan.github.io/posts/3c601fd3/</loc>
     
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/2024/01/28/galgame-rkr/</loc>
+    <loc>https://kuramiwan.github.io/posts/9a583f9/</loc>
     
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/posts/bdbed721/</loc>
+    
+    <lastmod>2024-02-13</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -23,15 +32,6 @@
     <loc>https://kuramiwan.github.io/link/index.html</loc>
     
     <lastmod>2024-01-28</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/2024/01/26/chaos/</loc>
-    
-    <lastmod>2024-01-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -58,57 +58,57 @@
 
   <url>
     <loc>https://kuramiwan.github.io/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://kuramiwan.github.io/tags/%E5%B7%A5%E7%A8%8B/</loc>
-    <lastmod>2024-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</loc>
-    <lastmod>2024-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kuramiwan.github.io/tags/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2024-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/galgame/</loc>
-    <lastmod>2024-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/rkr/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kuramiwan.github.io/tags/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kuramiwan.github.io/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/</loc>
+    <lastmod>2024-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/galgame/</loc>
+    <lastmod>2024-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/rkr/</loc>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -116,22 +116,22 @@
 
   
   <url>
+    <loc>https://kuramiwan.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2024-02-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kuramiwan.github.io/categories/%E5%B7%A5%E7%A8%8B/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://kuramiwan.github.io/categories/galgame/</loc>
-    <lastmod>2024-01-31</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2024-01-31</lastmod>
+    <lastmod>2024-02-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
