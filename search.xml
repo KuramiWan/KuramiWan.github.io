@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>howLinuxWorks</title>
+      <link href="/posts/3c601fd3/"/>
+      <url>/posts/3c601fd3/</url>
+      
+        <content type="html"><![CDATA[<p>本文将记录《how linux works》一书中的知识。</p><h1 id="第一章-概述"><a href="#第一章-概述" class="headerlink" title="第一章 概述"></a>第一章 概述</h1><h2 id="Linux层次"><a href="#Linux层次" class="headerlink" title="Linux层次"></a>Linux层次</h2><p>Linux分为用户进程，Linux内核，硬件。<br><img src="https://i.miji.bid/2024/02/26/7142c1515fa66c114e79f963306de349.webp" alt="Linux分层"><br>内核在硬件之上管理硬件系统，是硬件系统和应用程序之间进行通信的接口</p><p>进程指计算机中运行的所有程序，组成了最顶层，称作用户空间或用户进程</p><p>用户进程与内核之间最主要的区别是内核在<strong>内核模式</strong> <em><strong>kernel mode</strong></em>中运行，用户进程在用户模式运行。内核模式中运行不受任何限制访问处理器与内存。那些只有内核可以访问的空间叫做<strong>内存空间</strong> <em><strong>kernel space</strong></em>，反之用户进程可以访问的为<strong>用户空间</strong> <em><strong>user space</strong></em>。<br>一般来说用户进程的影响范围被限制在用户空间内。</p><h2 id="主内存"><a href="#主内存" class="headerlink" title="主内存"></a>主内存</h2><p>与CPU频繁产生读取行为的内存。数据以特定排列的<strong>0与1</strong> <em><strong>bit</strong></em>存储，这被称为<strong>状态</strong> <em><strong>state</strong></em>。我们可以用<strong>状态</strong>的<strong>变化阶段</strong>来描述进程的执行过程（eg. 进程的执行阶段 ，进程正在执行启动任务阶段）。<br><strong>镜像</strong> <em><strong>image</strong></em> 通常表示比特值在内存中的特定物理排列</p><h2 id="内核"><a href="#内核" class="headerlink" title="内核"></a>内核</h2><p>内存负责管理以下四个方面：</p><ul><li>进程：决定哪个进程可以使用CPU</li><li>内存：内存分配，管理进程间的共享内存与空闲内存</li><li>设备驱动程序：作为硬件系统和进程之间的接口</li><li>系统调用和支持： 进程使用系统调用和进程通信</li></ul><h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p>进程轮流使用CPU实现同时运行多个进程，被称作<strong>多任务执行</strong>。CPU从执行一个进程切换到执行另一个进程就叫做<strong>上下文切换</strong> <em><strong>context swich</strong></em></p><ol><li>CPU停止A进程，由内核接管CPU控制权</li><li>内核记录下但前CPU和内存的<strong>状态</strong>信息，在恢复进程时使用</li><li>内核执行上个时间段内被悬置的任务（输入输出，磁盘读写）</li><li>内核准备执行下一个进程，从准备就绪的进程中选择一个执行</li><li>内核为B进程准备CPU与内存</li><li>内核将新进程执行时间段通知CPU</li><li>内核将CPU切换至用户模式，将CPU控制权移交给新进程</li></ol><blockquote><p>内核在什么时候运行的？<br>在上下文切换时的时间段间隙中运行的</p></blockquote><h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><p>内核在上下文切换过程中管理内存，内核要保证以下条件</p><ul><li>内核自己的专有内存空间</li><li>每个用户进程的专有空间</li><li>用户进程之间的共享空间</li><li>用户进程的某些内存空间可以是只读</li><li><strong>交换空间</strong> <em><strong>swap space</strong></em> 扩展出比实际内存容量更大的内存空间</li></ul><p> <strong>MMU</strong> <strong>内存管理单元</strong>  <em><strong>Memory Management Unit</strong></em><br> 让进程不是直接访问内存的实际物理地质，而是通过MMU截获进程的访问请求通过<strong>内存映射表</strong>将虚拟地址转换为世纪物理地址。内核将会维护这张表</p><blockquote><p>内存映射地址使用<strong>页表</strong> <em><strong>page table</strong></em> 实现</p></blockquote><h3 id="驱动程序"><a href="#驱动程序" class="headerlink" title="驱动程序"></a>驱动程序</h3><p>设备驱动程序在传统意义上来说也是内核的一部分，作用都是为用户进程提供统一的结构，使用硬件设备。</p><h3 id="系统调用和系统支持"><a href="#系统调用和系统支持" class="headerlink" title="系统调用和系统支持"></a>系统调用和系统支持</h3><p><strong>系统调用</strong> <em><strong>system call</strong></em><br>有时候用户进程需要执行一些不方便或是无法完成的工作。 打开，读取，写文件这些操作都涉及系统调用。<br>fork(): 当进程调用fork时，内核创建一个和该进程几乎一样的副本<br>exec(): 当进程调用exec(program) 内核启动program来替换当前进程<br>除了init外，Linux中所有的用户进程都是通过fork()来启动的。除了创建现有进程的副本外，多数情况下你还可以使用exec() 来启动新的进程。<br>当你在terminal中输入ls时会发生什么?<br>终端窗口中的shell调用fork()创建一个shell副本，这时候有了两个一样的shell进程，然后该副本调用exec(ls) 来运行ls。</p><p>内核还为用户进程提供了许多功能，比如虚拟设备。虚拟设备是用软件模式出的硬件设备，技术上来说这并不需要存在与内核中，但是就实现难度来说，放在内核中要小的多，比如<strong>岁技术生成器</strong> (&#x2F;dev&#x2F;random)</p><h2 id="用户空间"><a href="#用户空间" class="headerlink" title="用户空间"></a>用户空间</h2><p>不同的用户进程被分配了独立的用户空间执行了不同的任务。</p><h2 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h2><p>Linux内核继承了UNIX的用户概念。早期还为产生PC这一概念时，多终端使用统一台设备，会有多个用户。<br>内核通过用户ID管理用户。每一个用户进程都有一个用户所有者。管理员用户即root拥有超级权限。</p><blockquote><p>虽然root用户权限很高但是还是在用户模式而非内核模式</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>全栈测试随记</title>
       <link href="/posts/bdbed721/"/>
       <url>/posts/bdbed721/</url>
