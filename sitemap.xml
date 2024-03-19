@@ -4,7 +4,7 @@
   <url>
     <loc>https://kuramiwan.github.io/posts/816097f/</loc>
     
-    <lastmod>2024-02-26</lastmod>
+    <lastmod>2024-03-19</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -109,6 +109,13 @@
   </url>
   
   <url>
+    <loc>https://kuramiwan.github.io/tags/Linux/</loc>
+    <lastmod>2024-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kuramiwan.github.io/tags/galgame/</loc>
     <lastmod>2024-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -117,13 +124,6 @@
   
   <url>
     <loc>https://kuramiwan.github.io/tags/rkr/</loc>
-    <lastmod>2024-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/Linux/</loc>
     <lastmod>2024-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -146,14 +146,14 @@
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/categories/galgame/</loc>
+    <loc>https://kuramiwan.github.io/categories/Linux/</loc>
     <lastmod>2024-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/categories/Linux/</loc>
+    <loc>https://kuramiwan.github.io/categories/galgame/</loc>
     <lastmod>2024-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
