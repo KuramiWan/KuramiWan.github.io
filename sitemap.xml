@@ -29,15 +29,6 @@
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/posts/3c601fd3/</loc>
-    
-    <lastmod>2024-02-13</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://kuramiwan.github.io/posts/9a583f9/</loc>
     
     <lastmod>2024-02-13</lastmod>
@@ -92,6 +83,20 @@
 
   
   <url>
+    <loc>https://kuramiwan.github.io/tags/GO/</loc>
+    <lastmod>2024-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kuramiwan.github.io/tags/Game/</loc>
+    <lastmod>2024-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kuramiwan.github.io/tags/%E5%B7%A5%E7%A8%8B/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -127,27 +132,6 @@
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/tags/galgame/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/rkr/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/GO/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kuramiwan.github.io/tags/CodeTraining/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -161,14 +145,14 @@
     <priority>0.2</priority>
   </url>
   
+
+  
   <url>
-    <loc>https://kuramiwan.github.io/tags/Game/</loc>
+    <loc>https://kuramiwan.github.io/categories/Go/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
-  
-
   
   <url>
     <loc>https://kuramiwan.github.io/categories/%E5%B7%A5%E7%A8%8B/</loc>
@@ -179,20 +163,6 @@
   
   <url>
     <loc>https://kuramiwan.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/categories/galgame/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/categories/Go/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
