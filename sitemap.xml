@@ -118,6 +118,13 @@
   </url>
   
   <url>
+    <loc>https://kuramiwan.github.io/tags/Linux/</loc>
+    <lastmod>2024-09-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kuramiwan.github.io/tags/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
@@ -133,13 +140,6 @@
   
   <url>
     <loc>https://kuramiwan.github.io/tags/CodeTraining/</loc>
-    <lastmod>2024-09-06</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kuramiwan.github.io/tags/Linux/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -162,14 +162,14 @@
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
+    <loc>https://kuramiwan.github.io/categories/Linux/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kuramiwan.github.io/categories/Linux/</loc>
+    <loc>https://kuramiwan.github.io/categories/%E6%B5%8B%E8%AF%95/</loc>
     <lastmod>2024-09-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
