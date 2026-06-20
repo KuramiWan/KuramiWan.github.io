@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>全栈测试随记 | Wan的技术博客</title><meta name="author" content="Kurami Wan"><meta name="copyright" content="Kurami Wan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="记录读完《Full Stack Testing》后的理解和反思——测试不是找bug，是用另一种方式理解自己写的代码">
+<meta property="og:type" content="article">
+<meta property="og:title" content="全栈测试随记">
+<meta property="og:url" content="https://kuramiwan.github.io/posts/bdbed721/index.html">
+<meta property="og:site_name" content="Wan的技术博客">
+<meta property="og:description" content="记录读完《Full Stack Testing》后的理解和反思——测试不是找bug，是用另一种方式理解自己写的代码">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp">
+<meta property="article:published_time" content="2024-01-31T10:52:20.000Z">
+<meta property="article:modified_time" content="2026-06-16T03:23:00.000Z">
+<meta property="article:author" content="Kurami Wan">
+<meta property="article:tag" content="工程">
+<meta property="article:tag" content="测试">
+<meta property="article:tag" content="全栈测试">
+<meta property="article:tag" content="方法论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp"><link rel="shortcut icon" href="https://i.miji.bid/2024/01/28/16520ac0431f181a5a26d6b002b34eca.webp"><link rel="canonical" href="https://kuramiwan.github.io/posts/bdbed721/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '全栈测试随记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-06-16 11:23:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/copyright.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.miji.bid/2024/01/28/e52cb469f4925945fb684f9ad3725ec7.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp')"><nav id="nav"><span id="blog-info"><a href="/" title="Wan的技术博客"><span class="site-name">Wan的技术博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">全栈测试随记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-31T10:52:20.000Z" title="发表于 2024-01-31 18:52:20">2024-01-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-16T03:23:00.000Z" title="更新于 2026-06-16 11:23:00">2026-06-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B5%8B%E8%AF%95/">测试</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="全栈测试随记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img gist" style="background-image: url(https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp)"></div><article class="post-content" id="article-container"><h2 id="为什么一个开发者要看测试书"><a href="#为什么一个开发者要看测试书" class="headerlink" title="为什么一个开发者要看测试书"></a>为什么一个开发者要看测试书</h2><p>《Full Stack Testing》这本书不厚，但覆盖了从单元测试到探索性测试的整套方法论。以下不是书的内容摘要，是我读完后觉得真正有用、并且从开发者视角重新理解过的部分。</p>
+<hr>
+<h2 id="测试不是找-bug"><a href="#测试不是找-bug" class="headerlink" title="测试不是找 bug"></a>测试不是找 bug</h2><p>这是书里让我重新校准的第一个概念。</p>
+<p>找 bug 是测试的结果，不是测试的目的。测试的目的是<strong>提供信息</strong>——这段代码在什么条件下正常工作，在什么条件下会出错，错了之后的表现是否可接受。这个信息服务于一个决策：<strong>现在能上线吗？</strong></p>
+<p>把测试理解为”信息获取”而不是”质量检验”，会改变你做测试的方式。你不会问”这个功能有 bug 吗”，而是问”在所有我知道的边界条件下，这个功能的行为我都看清楚了吗”。前者只有一个答案（有&#x2F;没有），后者会引导你系统地列出一组场景。</p>
+<hr>
+<h2 id="等价类划分与边界值分析"><a href="#等价类划分与边界值分析" class="headerlink" title="等价类划分与边界值分析"></a>等价类划分与边界值分析</h2><p>这两个是测试理论里的基础，几乎是所有测试方法论的起点。</p>
+<h3 id="等价类"><a href="#等价类" class="headerlink" title="等价类"></a>等价类</h3><p>假设有一个输入值 x，业务逻辑分三段处理：x &lt; 500、500 ≤ x ≤ 1500、x &gt; 1500。理论上三个区间里的任意值行为都应该一致。所以你不必测全部数值，只需要在每个区间挑一个代表。</p>
+<blockquote>
+<p>等价类的核心思想：<strong>把无穷的输入空间压缩到有限个”行为相同的组”里</strong>。</p>
+</blockquote>
+<p>从开发者视角看，等价类划分就是问自己一个问题：**”这段代码有多少条不同的执行路径？”** 每个 if 分支、每个 switch case、每个返回值不同的边界，都是一个等价类。</p>
+<h3 id="边界值"><a href="#边界值" class="headerlink" title="边界值"></a>边界值</h3><p>等价类的”边界”是最容易出 bug 的地方。原因很简单：开发者在写 <code>if x &lt; 500</code> 和 <code>if x &gt;= 500</code> 的时候，容易把等于号放错位置。</p>
+<p>所以边界值分析就是：在每个等价类的边缘，多测一个值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">等价类：[0, 500)  [500, 1500]  (1500, ∞)</span><br><span class="line">边界值：0, 1, 500, 501, 1500, 1501</span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;=</code> 和 <code>&lt;</code> 的区别，在代码里是一个字符。在测试里要精确到两个相邻的整数。</p>
+<p>读到这里的时候我在想我写的那些代码——边界判断几乎都是拍脑袋定的。”多少算大？500 吧。” 没想过为什么是 500，更没想过 500 这个边界本身的行为是否正确。等价类和边界值给了这个”拍脑袋”一个检查清单。</p>
+<hr>
+<h2 id="状态转换：把”历史决定行为”画出来"><a href="#状态转换：把”历史决定行为”画出来" class="headerlink" title="状态转换：把”历史决定行为”画出来"></a>状态转换：把”历史决定行为”画出来</h2><p>有些 bug 不是单次操作触发的，而是<strong>操作序列</strong>触发的。比如连续输错三次密码后账号锁定——这个 bug 只在第三次失败时才出现，单独测一次登录是对的。</p>
+<p>状态转换图就是用来描述这种”历史依赖”的：</p>
+<p><img src="https://i.miji.bid/2024/01/31/6d46e770978a11be346d7fbd3da39c9a.webp" alt="状态转换"></p>
+<p>每个节点是一个状态，每条边是一个触发条件。测试用例就是图中的一条路径。</p>
+<p>从开发者的角度看，状态转换图其实就是<strong>前端路由状态机</strong>或者<strong>后端工作流引擎</strong>的另一种表达。如果你的代码里已经有一个状态机（redux reducer、订单状态流转、审批流），那测试用例就是状态机的遍历路径。如果没有——你的业务逻辑可能是散在十几个 if-else 里的隐式状态机，那画一个状态转换图本身就已经是在发现设计问题了。</p>
+<hr>
+<h2 id="成对测试：不穷举也能覆盖-80"><a href="#成对测试：不穷举也能覆盖-80" class="headerlink" title="成对测试：不穷举也能覆盖 80%"></a>成对测试：不穷举也能覆盖 80%</h2><p>这是全书我印象最深的一个技术点，因为它解决的是一个我直觉上认为”无解”的问题。</p>
+<p>比如有三个条件，每个条件有两种取值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A ∈ &#123;1, 2&#125;</span><br><span class="line">B ∈ &#123;1, 2&#125;</span><br><span class="line">C ∈ &#123;1, 2&#125;</span><br></pre></td></tr></table></figure>
+
+<p>全部组合：2 × 2 × 2 &#x3D; <strong>8 组</strong>。</p>
+<p>如果每个条件有三种取值：3 × 3 × 3 &#x3D; <strong>27 组</strong>。</p>
+<p>条件再多一个，指数爆炸。真实场景里，一个配置页面可能有六个下拉框，每个四五个选项——穷举不现实。</p>
+<p>成对测试（Pairwise Testing）的洞察是：<strong>研究表明，单因子和双因子组合导致的错误占比约 80%，三因子及以上的错误只有约 20%。</strong></p>
+<p>所以只需要保证每两个条件之间的所有组合至少出现一次。具体做法：</p>
+<ul>
+<li><p><strong>单因子错误</strong>（只有 A&#x3D;1 是 bug）→ 至少需要 2 组：<br><code>&#123;A=1, B=1, C=1&#125;</code> 和 <code>&#123;A=2, B=1, C=1&#125;</code>（只改 A，其他不变）</p>
+</li>
+<li><p><strong>双因子错误</strong>（A&#x3D;1 且 B&#x3D;1 同时才触发 ）→ 至少需要 4 组：<br><code>&#123;A=1, B=1, C=1&#125;</code>、<code>&#123;A=1, B=1, C=2&#125;</code>、<code>&#123;A=1, B=2, C=1&#125;</code>、<code>&#123;A=2, B=1, C=1&#125;</code></p>
+</li>
+</ul>
+<p>三因子则需要全部 8 组。但你付出 4 组的测试量，覆盖了 80% 的错误类型。投入产出比极高。</p>
+<p>这让我想到一个日常场景：<strong>API 接口的参数组合测试</strong>。一个查询接口有三个可选参数，每个参数可以传值、不传、传空——光用脑袋想”应该测哪些组合”就已经炸了。成对测试给了一个可操作的方法：先用<a target="_blank" rel="noopener" href="https://pairwise.teremokgames.com/">成对测试工具</a>生成最小覆盖集，再补几个高频场景。比拍脑袋穷举高效得多，也比”随便测几个”有依据。</p>
+<hr>
+<h2 id="因果图和决策表"><a href="#因果图和决策表" class="headerlink" title="因果图和决策表"></a>因果图和决策表</h2><p>因果图和决策表是一种互补工具——决策表只管”某个条件下某个结果是 true 还是 false”，而因果图更进一步，能表达条件之间的因果联系以及哪些条件组合永远不会同时出现。</p>
+<p><img src="https://i.miji.bid/2024/01/31/1a3f9881383f43d7582d1217ad679242.webp" alt="因果图"></p>
+<p>不过说实话，我读完这部分的感觉是：<strong>这两个工具更适合需求阶段用，而不是测试阶段</strong>。如果需求文档本身就已经有逻辑漏洞，因果图能在写代码之前暴露矛盾。但如果你已经对着已有代码去画因果图，大概率会发现”这里逻辑本来就不太对”但已经改不了了。它属于”事前设计好过事后补救”的范畴。</p>
+<hr>
+<h2 id="错误清单：前人的常见踩坑"><a href="#错误清单：前人的常见踩坑" class="headerlink" title="错误清单：前人的常见踩坑"></a>错误清单：前人的常见踩坑</h2><p>书里有一组经验性的常见错误列表。这些东西不是方法论推导出来的，是”测多了，反复踩的坑”。我把它抄在这里，因为每一个都可能在某一天被自己碰上：</p>
+<ul>
+<li>缺少对空值和无效输入的校验，且错误提示不清晰</li>
+<li>HTTP 状态码不明确——业务错误、技术错误、数据校验错误全返回 500</li>
+<li>未处理的边界条件：特定数据类型、特定状态下的极端值</li>
+<li>UI 端未处理的技术异常——服务器挂了，前端白屏而不是显示”暂时不可用”</li>
+<li>页面切换、数据刷新时的 UI 闪烁或残留</li>
+<li>SQL 中 <code>LIKE</code> 和 <code>=</code> 混用，两个操作符的行为完全不同</li>
+<li>缓存未清理、会话超时未定义</li>
+<li>从不同操作系统上传文件时缺少格式校验</li>
+<li>用户点击浏览器后退按钮后表单重复提交</li>
+</ul>
+<p>其中第三点——“UI 端未处理的技术异常”——是我最常在自己代码里看到的问题。try-catch 里永远只有一个 <code>console.error(err)</code>，用户看到的要么是白屏，要么是”程序异常”四个字。</p>
+<p>做一个开发者，看到测试人员列出这些东西，感受是很复杂的。一方面觉得”这些确实是我没想到的”，另一方面意识到：<strong>测试思维和开发思维确实是两种不同的脑回路</strong>。开发想的是”怎么让功能跑通”，测试想的是”怎么让功能坏掉”。这两种思维在同一个人脑子里很难同时存在——所以才需要独立的测试角色。</p>
+<hr>
+<h2 id="手动探索测试"><a href="#手动探索测试" class="headerlink" title="手动探索测试"></a>手动探索测试</h2><p>书里把测试分为两类：脚本化测试（跟着测试用例走）和探索性测试（自由探索）。探索性测试强调把三个视角同时打开：</p>
+<ol>
+<li><strong>业务视角</strong>：这个功能在真实业务场景里怎么用？</li>
+<li><strong>技术视角</strong>：实现细节上哪里最脆弱？</li>
+<li><strong>用户视角</strong>：一个不了解系统的用户会发现什么问题？</li>
+</ol>
+<p>探索性测试不是”随便点点”。它有一套自己的策略框架：从用户角色入手理解不同权限下的行为差异，从业务领域入手理解行业特有的工作流，从基础设施配置入手发现环境相关的问题。</p>
+<p>我去看了看自己的开发习惯——写完一个功能后，我测试的方式就是”手动探索”。没有测试用例，没有边界值列表，就是按照”我觉得用户可能会怎么用”去点。区别在于：书里的探索性测试是<strong>有框架的探索</strong>，有 checklist 和策略；我的探索是<strong>凭直觉的探索</strong>，稳定性取决于当天心情。</p>
+<hr>
+<h2 id="测试数据与环境"><a href="#测试数据与环境" class="headerlink" title="测试数据与环境"></a>测试数据与环境</h2><p>书里讲了一个我从未想过的问题：<strong>测试数据的卫生</strong>。</p>
+<p>当你在同一个测试环境上反复跑测试时，上一次测试留下的数据可能污染下一次的测试结果。比如你测试”新用户注册”流程，但数据库里已经有前一天注册的测试用户，你可能测不到”首次注册成功”那条逻辑。</p>
+<p>书里的建议：每次开始新的用户故事就部署新的构建（清空旧数据），或者为每个测试故事创建一组全新的测试数据，而不是复用已有的。</p>
+<p>还有测试环境的问题。书里提到<strong>自治团队</strong>的概念——测试人员应该能直接访问应用日志、修改环境配置、创建测试数据，而不需要向 DevOps 团队提工单。等待外部团队响应在探索性测试期间特别致命——你想验证一个假设，但得等半天才能拿到权限。</p>
+<p>这些内容对我来说比测试方法论本身更有冲击力，因为**它们讲的不是”怎么测”，而是”测不好常常不是因为不会测，是因为环境和流程阻碍了测试”**。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>我是一个开发者，不是测试工程师。读完这本书不会让我变成”会测试的人”——我依然不会在写代码之前先写测试用例。但书里的东西改变了我的一个习惯：</p>
+<blockquote>
+<p><strong>写完功能后，不是”跑一遍，没崩，push”，而是”按照等价类每个区间挑一个值跑一遍，边界值跑一遍，状态转换的关键路径跑一遍，再把错误清单过一遍”。</strong></p>
+</blockquote>
+<p>这大概多花 15 分钟。但这 15 分钟里发现的 bug，如果在生产环境被发现，修复成本至少是一个小时起——定位、复现、修、部署、回滚、道歉。</p>
+<p>测试不是质量的保证，是信息获取的成本前置。</p>
+<hr>
+<p><em>下篇预告：混沌工程随记的展开——从一个真实的注入实验开始写。</em></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>全栈测试随记</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://kuramiwan.github.io/posts/bdbed721/">https://kuramiwan.github.io/posts/bdbed721/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a" style="display: inline-block;width: 120px"><h>作者</h><div class="post-copyright-cc-info"><h>Kurami Wan</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>发布于</h><div class="post-copyright-cc-info"><h>2024-01-31</h></div></div><div class="post-copyright-u" style="display: inline-block;width: 120px"><h>更新于</h><div class="post-copyright-cc-info"><h>2026-06-16</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY 4.0" href="https://creativecommons.org/licenses/by/4.0/deed.zh">CC BY 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B7%A5%E7%A8%8B/">工程</a><a class="post-meta__tags" href="/tags/%E6%B5%8B%E8%AF%95/">测试</a><a class="post-meta__tags" href="/tags/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95/">全栈测试</a><a class="post-meta__tags" href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论</a></div><div class="post_share"><div class="social-share" data-image="https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp" data-sites="twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/816097f/" title="HowLinuxWorks随记"><img class="cover" src="https://i.miji.bid/2024/02/26/6b5bd0a65ea52d3c4e044e9e7910aa7c.webp" onerror="onerror=null;src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">HowLinuxWorks随记</div></div></a></div><div class="next-post pull-right"><a href="/posts/9a583f9/" title="混沌工程随记"><img class="cover" src="https://res.cloudinary.com/gremlin/image/upload/t_default,f_auto/chaosengineeringintro-tutorial-title-2x.png" onerror="onerror=null;src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">混沌工程随记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/9a583f9/" title="混沌工程随记"><img class="cover" src="https://res.cloudinary.com/gremlin/image/upload/t_default,f_auto/chaosengineeringintro-tutorial-title-2x.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-26</div><div class="title">混沌工程随记</div></div></a></div><div><a href="/posts/game-test-ch1/" title="游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章"><img class="cover" src="https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-17</div><div class="title">游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.miji.bid/2024/01/28/e52cb469f4925945fb684f9ad3725ec7.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kurami Wan</div><div class="author-info__description">软件工程毕业生，游戏爱好者。记录游戏系统分析、测试方法与技术探索。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/KuramiWan"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KuramiWan" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:kurami.noya@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://twitter.com/HodeBaiter" target="_blank" title=""><i class="fa-brands fa-twitter"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Java, javascript知识收集更新</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E8%80%85%E8%A6%81%E7%9C%8B%E6%B5%8B%E8%AF%95%E4%B9%A6"><span class="toc-number">1.</span> <span class="toc-text">为什么一个开发者要看测试书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E4%B8%8D%E6%98%AF%E6%89%BE-bug"><span class="toc-number">2.</span> <span class="toc-text">测试不是找 bug</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86%E4%B8%8E%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90"><span class="toc-number">3.</span> <span class="toc-text">等价类划分与边界值分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB"><span class="toc-number">3.1.</span> <span class="toc-text">等价类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%95%8C%E5%80%BC"><span class="toc-number">3.2.</span> <span class="toc-text">边界值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%EF%BC%9A%E6%8A%8A%E2%80%9D%E5%8E%86%E5%8F%B2%E5%86%B3%E5%AE%9A%E8%A1%8C%E4%B8%BA%E2%80%9D%E7%94%BB%E5%87%BA%E6%9D%A5"><span class="toc-number">4.</span> <span class="toc-text">状态转换：把”历史决定行为”画出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E5%AF%B9%E6%B5%8B%E8%AF%95%EF%BC%9A%E4%B8%8D%E7%A9%B7%E4%B8%BE%E4%B9%9F%E8%83%BD%E8%A6%86%E7%9B%96-80"><span class="toc-number">5.</span> <span class="toc-text">成对测试：不穷举也能覆盖 80%</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%A0%E6%9E%9C%E5%9B%BE%E5%92%8C%E5%86%B3%E7%AD%96%E8%A1%A8"><span class="toc-number">6.</span> <span class="toc-text">因果图和决策表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%B8%85%E5%8D%95%EF%BC%9A%E5%89%8D%E4%BA%BA%E7%9A%84%E5%B8%B8%E8%A7%81%E8%B8%A9%E5%9D%91"><span class="toc-number">7.</span> <span class="toc-text">错误清单：前人的常见踩坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8E%A2%E7%B4%A2%E6%B5%8B%E8%AF%95"><span class="toc-number">8.</span> <span class="toc-text">手动探索测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%E4%B8%8E%E7%8E%AF%E5%A2%83"><span class="toc-number">9.</span> <span class="toc-text">测试数据与环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">10.</span> <span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/game-test-ch1/" title="游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章"><img src="https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章"/></a><div class="content"><a class="title" href="/posts/game-test-ch1/" title="游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章">游戏测试和普通测试到底差在哪 —— 读《游戏测试完全指南》第 1 章</a><time datetime="2026-06-17T06:07:00.000Z" title="发表于 2026-06-17 14:07:00">2026-06-17</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/dota2-mod-editor-first-look/" title="DOTA2 Mod编辑器初探">DOTA2 Mod编辑器初探</a><time datetime="2026-06-15T11:20:00.000Z" title="发表于 2026-06-15 19:20:00">2026-06-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/gacha-operation-rhythm/" title="二游运营节奏回顾：那些维系&quot;陪伴契约&quot;的成功与翻车">二游运营节奏回顾：那些维系&quot;陪伴契约&quot;的成功与翻车</a><time datetime="2026-06-15T07:00:00.000Z" title="发表于 2026-06-15 15:00:00">2026-06-15</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/4ba4a487/" title="二游付费的悖论：为什么&quot;不付费&quot;才是最优解">二游付费的悖论：为什么&quot;不付费&quot;才是最优解</a><time datetime="2026-06-15T06:00:00.000Z" title="发表于 2026-06-15 14:00:00">2026-06-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/dec0d091/" title="[代码练习] 喝100杯奶茶"><img src="/img/HaveACup/cup.png" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="[代码练习] 喝100杯奶茶"/></a><div class="content"><a class="title" href="/posts/dec0d091/" title="[代码练习] 喝100杯奶茶">[代码练习] 喝100杯奶茶</a><time datetime="2024-09-06T08:47:48.000Z" title="发表于 2024-09-06 16:47:48">2024-09-06</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://i.miji.bid/2024/01/31/124472fb5ee13cec40bed9431dc0bbf3.webp')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Kurami Wan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="156013738" data-server="netease" data-type="album" data-fixed="true" data-autoplay="false" data-lrcType="-1"> </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
