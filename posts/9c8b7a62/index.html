@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题 | Wan的技术博客</title><meta name="author" content="Kurami Wan"><meta name="copyright" content="Kurami Wan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="匹配机制的抱怨从未消失过线上对战游戏这么多年了，为什么找不出一个好的匹配机制？ 守望先锋 2 加了角色队列，五个辅助排到一起的情况不再发生，锁定职责，队友抢职责瞎选的情况确实少了，但抱怨改为了「系统在控制我的胜率」。 漫威争锋 官方反复否认用 EOMM，发了开发者视频逐帧解释匹配流程。但…社区好像一点也不买单。 Dota 2 的「强制 50%」指责存在了十多年。Valve 换了算法、又加了 B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题">
+<meta property="og:url" content="https://kuramiwan.github.io/posts/9c8b7a62/index.html">
+<meta property="og:site_name" content="Wan的技术博客">
+<meta property="og:description" content="匹配机制的抱怨从未消失过线上对战游戏这么多年了，为什么找不出一个好的匹配机制？ 守望先锋 2 加了角色队列，五个辅助排到一起的情况不再发生，锁定职责，队友抢职责瞎选的情况确实少了，但抱怨改为了「系统在控制我的胜率」。 漫威争锋 官方反复否认用 EOMM，发了开发者视频逐帧解释匹配流程。但…社区好像一点也不买单。 Dota 2 的「强制 50%」指责存在了十多年。Valve 换了算法、又加了 B">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://kuramiwan.github.io/img/competitive-illusion/cover.jpg">
+<meta property="article:published_time" content="2025-07-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-03T13:03:54.054Z">
+<meta property="article:author" content="Kurami Wan">
+<meta property="article:tag" content="游戏分析">
+<meta property="article:tag" content="匹配系统">
+<meta property="article:tag" content="游戏设计">
+<meta property="article:tag" content="Elo">
+<meta property="article:tag" content="Dota 2">
+<meta property="article:tag" content="CS2">
+<meta property="article:tag" content="玩家心理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kuramiwan.github.io/img/competitive-illusion/cover.jpg"><link rel="shortcut icon" href="https://i.miji.bid/2024/01/28/16520ac0431f181a5a26d6b002b34eca.webp"><link rel="canonical" href="https://kuramiwan.github.io/posts/9c8b7a62/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2026-08-03 21:03:54'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/copyright.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.miji.bid/2024/01/28/e52cb469f4925945fb684f9ad3725ec7.webp" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/competitive-illusion/cover.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Wan的技术博客"><span class="site-name">Wan的技术博客</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-07-10T16:00:00.000Z" title="发表于 2025-07-11 00:00:00">2025-07-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-03T13:03:54.054Z" title="更新于 2026-08-03 21:03:54">2026-08-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90/">游戏分析</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img gist" style="background-image: url(/img/competitive-illusion/cover.jpg)"></div><article class="post-content" id="article-container"><span id="more"></span>
+
+<h2 id="匹配机制的抱怨从未消失过"><a href="#匹配机制的抱怨从未消失过" class="headerlink" title="匹配机制的抱怨从未消失过"></a>匹配机制的抱怨从未消失过</h2><p>线上对战游戏这么多年了，为什么找不出一个好的匹配机制？</p>
+<p><strong>守望先锋 2</strong> 加了角色队列，五个辅助排到一起的情况不再发生，锁定职责，队友抢职责瞎选的情况确实少了，但抱怨改为了「系统在控制我的胜率」。</p>
+<p><strong>漫威争锋</strong> 官方反复否认用 EOMM，发了开发者视频逐帧解释匹配流程。但…社区好像一点也不买单。</p>
+<p><strong>Dota 2</strong> 的「强制 50%」指责存在了十多年。Valve 换了算法、又加了 Behavior Score、Role Queue、Immortal Draft，但指责匹配机制的声音始终存在。</p>
+<p>这么多游戏、不同的算法、不同的公司，但「系统在针对我」的说法在所有竞技游戏里都差不多。</p>
+<p>匹配机制真的有问题吗？</p>
+<p>或许玩家抱怨的不是匹配算法。抱怨的是在团队游戏里输了的体验，而匹配系统只是最方便的背锅对象。</p>
+<hr>
+<h2 id="Elo-的来源"><a href="#Elo-的来源" class="headerlink" title="Elo 的来源"></a>Elo 的来源</h2><p>1960 年，Arpad Elo 为美国国际象棋联合会设计了 Elo 评分系统。下棋是 1v1、零随机、对局结果基本等于实力差，这很公平，象棋玩家想要的就是精准的实力排序。对完全信息博弈的纯竞技来说，这个系统运行得不错。</p>
+<p><img src="/img/competitive-illusion/chess-detail.jpg" alt="国际象棋是 Elo 最初的土壤"></p>
+<p>六十年后，游戏行业把它搬进了 5v5、存在英雄 Counter、有暴击概率、还可能网络延迟不稳定的游戏里。在电子游戏里挨骂的Elo匹配系统就诞生了。</p>
+<h3 id="Elo-在优化什么"><a href="#Elo-在优化什么" class="headerlink" title="Elo 在优化什么"></a>Elo 在优化什么</h3><p>一个完美的 Elo 系统能做到的顶峰是：在最短时间内确定玩家的真实实力。</p>
+<p>而这个顶峰会意味着玩家的段位停滞。这样的停滞期往往都是游戏退坑的高危时间。</p>
+<blockquote>
+<p>Elo 的设计目标是尽快的定位到玩家的水平。然而大部分玩家的需求是持续感受段位的增长，自己的成长。</p>
+</blockquote>
+<p>注意，我这里并不是在指责这些玩家，只是我想指出，电子游戏段位和专业的技术排位它们面对的人群和需求明显是不同的。</p>
+<h3 id="EA-的数据"><a href="#EA-的数据" class="headerlink" title="EA 的数据"></a>EA 的数据</h3><p>EA 分析了 3690 万场比赛：</p>
+<ul>
+<li>连输 3 场：5.1% 的玩家退出</li>
+<li>连赢 3 场：3.7% 的玩家因为无聊退出</li>
+<li>输-输-赢模式：只有 2.6% 的玩家退出</li>
+</ul>
+<p>这里做一个思考，对于追求公平竞技而言，50% 胜率、势均力敌的持久战应该是最优解。然而大部分玩家经历几局高压局之后就会疲惫的退出游戏。游戏的匹配机制越好，玩家玩的越累。</p>
+<p>所以“公平”或许不是电子游戏匹配机制的核心追求<br>Mingliu Chen 等人在 _Management Science_（2025）上对 Lichess 540 万局对局的分析也指向类似结论：加入心理因素的匹配优化能提升 4-6% 的参与度。</p>
+<hr>
+<h2 id="2017-年到-2025-年的研究"><a href="#2017-年到-2025-年的研究" class="headerlink" title="2017 年到 2025 年的研究"></a>2017 年到 2025 年的研究</h2><p>几个独立团队用不同的方法论指向同一个结论。</p>
+<h3 id="EOMM（EA-UCLA，2017）"><a href="#EOMM（EA-UCLA，2017）" class="headerlink" title="EOMM（EA + UCLA，2017）"></a>EOMM（EA + UCLA，2017）</h3><p>Zhengxing Chen 等人的论文，发表在 WWW 2017：</p>
+<blockquote>
+<p>「以公平为目标的匹配是 EOMM 在极度简化假设下的一个特例，这个假设在现实中几乎从不成立。」</p>
+</blockquote>
+<p>匹配目标从「让胜率 50&#x2F;50」改为「最大化整体玩家参与度」。</p>
+<h3 id="OptMatch（NetEase-清华，KDD-2020）"><a href="#OptMatch（NetEase-清华，KDD-2020）" class="headerlink" title="OptMatch（NetEase + 清华，KDD 2020）"></a>OptMatch（NetEase + 清华，KDD 2020）</h3><p>用图嵌入学习玩家之间的协同关系和压制关系。在 Dota 2、LOL、NBA 和 Fever Basketball 四个数据集上做了验证和线上 A&#x2F;B 测试。</p>
+<h3 id="EnMatch（NetEase，AAAI-2024）"><a href="#EnMatch（NetEase，AAAI-2024）" class="headerlink" title="EnMatch（NetEase，AAAI 2024）"></a>EnMatch（NetEase，AAAI 2024）</h3><p>第一个用神经组合优化解决团队游戏匹配的系统，已在两款真实游戏中部署。</p>
+<h3 id="XDefiant"><a href="#XDefiant" class="headerlink" title="XDefiant"></a>XDefiant</h3><p>当然也有看透了玩家匹配机制的抱怨，完全抛弃了匹配的，育碧大乱斗Xdefiant：<br>2024 年 5 月上线，2025 年 6 月停运。Ubisoft 把「休闲模式无 SBMM」作为卖点。上线三周内低水平玩家大规模退出。底层流失后，中间层变成新的底层，继续退。</p>
+<p>把匹配系统完全拿走，不会让游戏变好，只会失去最基本的可玩性保障。</p>
+<hr>
+<h2 id="匹配系统被过度讨论了"><a href="#匹配系统被过度讨论了" class="headerlink" title="匹配系统被过度讨论了"></a>匹配系统被过度讨论了</h2><p>说这么多，我们发现，匹配好不好其实不是一件可以主观评判的事情，它直接和玩家的主观感受挂钩，这和玩家觉得一款游戏好不好玩实际上是同源的，很难量化评价。</p>
+<p>匹配的职责很简单：从同时在线的人里找出合适的 10 个，尽量让两边实力不太悬殊。</p>
+<p>但玩家和游戏公司赋予了它远超这个能力的期望。玩家希望匹配系统确保这一局「公平」「好玩」「有成长」。把 30 分钟、10 个人的对局体验，英雄 Counter，网络波动，某个人今天心情不好，某个人在练英雄。所有所有全部归因到匹配算法，本身就是归因错误。</p>
+<p>但匹配系统是整个链条里唯一一个能被命名、由开发者控制的东西。所以它成了那个背锅的对象。</p>
+<hr>
+<h2 id="玩家真正在意的：三感"><a href="#玩家真正在意的：三感" class="headerlink" title="玩家真正在意的：三感"></a>玩家真正在意的：三感</h2><p>这里我从游戏设计角度，提出一些看法，绝大部分玩家在竞技游戏中其实并不在乎公平，更想要的是三种心理需求。</p>
+<h3 id="成长感"><a href="#成长感" class="headerlink" title="成长感"></a>成长感</h3><p>玩家感受到在游戏里的时间被兑现。</p>
+<p>对于成长型玩家来说段位是多少不重要，只要段位在涨就好了。段位数字，上涨时被当作自己厉害，停滞时被质疑为系统针对。</p>
+<p>于是厂家们都使用了赛季段位重置的模式。<br>玩家段位跌落制造了追赶需求，驱动赛季初 DAU 暴增。但其实隐藏分没动，实力没变，匹配的对手实力也没变，但成长叙事被重新激活了。</p>
+<h3 id="稀缺感"><a href="#稀缺感" class="headerlink" title="稀缺感"></a>稀缺感</h3><p>段位在别人眼里值不值钱。</p>
+<p>段位是社交货币。钻石框社区里有分量，不是每个人都有，制造了稀缺性。</p>
+<p>为了让你的钻石框有分量，系统必须让大多数人拿不到钻石框。</p>
+<h3 id="竞技感"><a href="#竞技感" class="headerlink" title="竞技感"></a>竞技感</h3><p>这局游戏本身爽不爽。</p>
+<p>挑战与技能匹配，即时的反馈，全神贯注于游戏，时间流逝，完全进入心流。这种感觉完全不需要外部奖励。来源于纯粹的竞技，但绝大部分玩家在大部分时间中都无法进入这种状态，这依赖于玩家的现实状态，心情。享受竞技并不容易，即使是专业的运动员，在进入心流之前也要系统化的调整自己的状态。更别要求一个普通的玩家了。</p>
+<h3 id="三感互相冲突"><a href="#三感互相冲突" class="headerlink" title="三感互相冲突"></a>三感互相冲突</h3><p>我们很容易看出这三感是互相冲突的，成长感要求不停的成长，就像修仙小说的一样，一级之后还有一级，一阶之后还有一阶，地上到顶了还能上天。</p>
+<p>然而稀缺感需要大多数人无法成长。</p>
+<p>竞技感则要求你忘记其它专注于当前的任务。</p>
+<p>这三感，没有一个是由匹配算法提供的。</p>
+<table>
+<thead>
+<tr>
+<th>玩家感受</th>
+<th>与什么相关</th>
+<th>匹配系统能做什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>成长感</td>
+<td>段位、赛季、英雄熟练度</td>
+<td>只提供输赢结果，不创造叙事</td>
+</tr>
+<tr>
+<td>稀缺感</td>
+<td>金字塔结构、限定皮肤、排行榜</td>
+<td>任何按分数排列的系统都会制造稀缺，没有匹配系统也可以，就像古早的竞技游戏一样</td>
+</tr>
+<tr>
+<td>竞技感</td>
+<td>操作手感、英雄设计、地图设计</td>
+<td>只决定对手有多强。游戏不好玩，匹配再准也没用</td>
+</tr>
+</tbody></table>
+<p>匹配系统只能预估你这局赢面多大。剩下三感，全是游戏设计的事。那说了这么多，到底什么重要呢？</p>
+<hr>
+<h2 id="Dota-2：用变化让你忘了匹配"><a href="#Dota-2：用变化让你忘了匹配" class="headerlink" title="Dota 2：用变化让你忘了匹配"></a>Dota 2：用变化让你忘了匹配</h2><p>Dota 2 的匹配系统十多年来被反复骂，但游戏活了十五年。</p>
+<p>游戏的不断更新与变化，让它具有强大的生命力。</p>
+<p><strong>选人时的变化</strong>：124 个英雄，每个至少 2 个命石。Lion 可以从远程变成近战平 A 怪，C位也可以在推进核和打架核之间切换。</p>
+<p><strong>局内的变化</strong>：150+ 件装备，每个英雄的 A仗 升级技能，中立装备从随机选项中自选。16 种天赋组合。同个英雄、同套出装，中立物品不同，打法就不同。</p>
+<p><strong>地图的变化</strong>：2023 年地图扩大 40%，天赋树，魔晶。2025 年河道延伸进野区。Valve 不断的周期性更换游戏底层玩法。</p>
+<p>正是多年持续不断的更新，每当玩家对它无聊时，Valve 都能拿出一个比论文还长的更新日志然后说：让我们来玩一个新游戏吧。</p>
+<hr>
+<h2 id="CS2：精进，不是变化"><a href="#CS2：精进，不是变化" class="headerlink" title="CS2：精进，不是变化"></a>CS2：精进，不是变化</h2><p>CS2 几乎没有变化引擎。AK、M4、AWP 二十年没变过。地图也是十多年没变。</p>
+<p>但 CS 从 1.6 算起活了二十五年。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Dota 2</th>
+<th>CS2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核心循环</td>
+<td>选人 → 对线 → 发育 → 团战</td>
+<td>买枪 → 执行 → 交火 → 重置</td>
+</tr>
+<tr>
+<td>反馈密度</td>
+<td>低。前 20 分钟只打两波团</td>
+<td>每 2 分钟一个完整循环</td>
+</tr>
+</tbody></table>
+<p>CS2 靠的是反馈密度。每个回合都是完整流畅：经济决策 → 购买 → 执行 → 交火 → 结果 → 经济重置。每个错误被立即、完整、无可辩驳地反馈，反馈路径机制的清晰简单，玩家非常容易的就能理解自己哪里没做对。</p>
+<p>枪法、移动、地图知识、道具点位哪怕练一万小时后仍有提升空间。</p>
+<hr>
+<h2 id="两种路径，同一家公司"><a href="#两种路径，同一家公司" class="headerlink" title="两种路径，同一家公司"></a>两种路径，同一家公司</h2><p>Valve 同时跑着两套设计哲学完全相反的游戏，各自统治品类十五年以上。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Dota 2</th>
+<th>CS2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>心流来源</td>
+<td>探索驱动</td>
+<td>精进驱动</td>
+</tr>
+<tr>
+<td>成长感来源</td>
+<td>知识广度</td>
+<td>知识深度</td>
+</tr>
+<tr>
+<td>稀缺感来源</td>
+<td>段位系统</td>
+<td>社群声誉</td>
+</tr>
+<tr>
+<td>设计态度</td>
+<td>不断改变</td>
+<td>把旧东西练到极致</td>
+</tr>
+</tbody></table>
+<p>两套哲学在同一个屋顶下运行，或许我们明白，不存在唯一正确的设计方向。</p>
+<p>大多数游戏（漫威争锋、守望先锋、瓦洛兰特、Apex）夹在中间。中等变化、中等深度，都没有走到极致。然后试图用匹配系统填补空洞。匹配系统填不了。它保证不了新鲜感，也保证不了精进感。</p>
+<p>Dota 2 和 CS2 的匹配本身并不好。Dota 2 有行为分的死亡螺旋和摆烂。CS2 外挂二十年没根治、对官方匹配也从来没有信任。</p>
+<p>但两款游戏都活过了十年。玩家留下来的理由不是匹配系统精准。</p>
+<hr>
+<h2 id="像单机一样做竞技游戏"><a href="#像单机一样做竞技游戏" class="headerlink" title="像单机一样做竞技游戏"></a>像单机一样做竞技游戏</h2><p>竞技游戏为什么耐玩，就是因为“每局不一样”的体验。通过其它玩家的多样性来丰富游戏玩法。</p>
+<p>或许我们可以假设，其它玩家也是游戏体验设计的一部分。<br>每个玩家的体验是独立的，所谓队友与对手，不过是一群“很智能的高级 bot”。我们应该像设计单机游戏一样思考，我们希望玩家玩到什么，至于“公平”“匹配机制”“段位”都是设计的副产品。</p>
+<p>匹配系统不是不重要。它需要确保两边差距不要大到没法打。但它不应该被期待提供成长感、稀缺感和竞技感。它提供不了。</p>
+<p>真正让人留下的，是游戏本身的体验能否持续提供新鲜感或精进感，游戏最终还是要回归好玩。</p>
+<hr>
+<p><em>2025 年 7 月</em></p>
+</article><div class="post-copyright"><div class="post-copyright__title"><span class="post-copyright-info"><h>竞技游戏的幻觉：为什么匹配系统在解决一个不存在的问题</h></span></div><div class="post-copyright__type"><span class="post-copyright-info"><a href="https://kuramiwan.github.io/posts/9c8b7a62/">https://kuramiwan.github.io/posts/9c8b7a62/</a></span></div><div class="post-copyright-m"><div class="post-copyright-m-info"><div class="post-copyright-a" style="display: inline-block;width: 120px"><h>作者</h><div class="post-copyright-cc-info"><h>Kurami Wan</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>发布于</h><div class="post-copyright-cc-info"><h>2025-07-11</h></div></div><div class="post-copyright-u" style="display: inline-block;width: 120px"><h>更新于</h><div class="post-copyright-cc-info"><h>2026-08-03</h></div></div><div class="post-copyright-c" style="display: inline-block;width: 120px"><h>许可协议</h><div class="post-copyright-cc-info"><a class="icon" rel="noopener" target="_blank" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a><a rel="noopener" target="_blank" title="CC BY 4.0" href="https://creativecommons.org/licenses/by/4.0/deed.zh">CC BY 4.0</a></div></div></div></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90/">游戏分析</a><a class="post-meta__tags" href="/tags/%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F/">匹配系统</a><a class="post-meta__tags" href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/">游戏设计</a><a class="post-meta__tags" href="/tags/Elo/">Elo</a><a class="post-meta__tags" href="/tags/Dota-2/">Dota 2</a><a class="post-meta__tags" href="/tags/CS2/">CS2</a><a class="post-meta__tags" href="/tags/%E7%8E%A9%E5%AE%B6%E5%BF%83%E7%90%86/">玩家心理</a></div><div class="post_share"><div class="social-share" data-image="/img/competitive-illusion/cover.jpg" data-sites="twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/4ba4a487/" title="二游付费的悖论：为什么&quot;不付费&quot;才是最优解"><img class="cover" src="/img/gacha-monetization-paradox/cover.jpg" onerror="onerror=null;src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">二游付费的悖论：为什么&quot;不付费&quot;才是最优解</div></div></a></div><div class="next-post pull-right"><a href="/posts/dec0d091/" title="[代码练习] 喝100杯奶茶"><img class="cover" src="/img/HaveACup/cup.png" onerror="onerror=null;src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">[代码练习] 喝100杯奶茶</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/f2p-cake-dilemma/" title="F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍"><img class="cover" src="/img/f2p-cake-dilemma/cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-16</div><div class="title">F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍</div></div></a></div><div><a href="/posts/4ba4a487/" title="二游付费的悖论：为什么&quot;不付费&quot;才是最优解"><img class="cover" src="/img/gacha-monetization-paradox/cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2026-06-15</div><div class="title">二游付费的悖论：为什么&quot;不付费&quot;才是最优解</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.miji.bid/2024/01/28/e52cb469f4925945fb684f9ad3725ec7.webp" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Kurami Wan</div><div class="author-info__description">软件工程毕业生，游戏爱好者。记录游戏系统分析、测试方法与技术探索。</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">27</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/KuramiWan"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/KuramiWan" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:kurami.noya@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://twitter.com/HodeBaiter" target="_blank" title=""><i class="fa-brands fa-twitter"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">Java, javascript知识收集更新</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E6%9C%BA%E5%88%B6%E7%9A%84%E6%8A%B1%E6%80%A8%E4%BB%8E%E6%9C%AA%E6%B6%88%E5%A4%B1%E8%BF%87"><span class="toc-number">1.</span> <span class="toc-text">匹配机制的抱怨从未消失过</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elo-%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-number">2.</span> <span class="toc-text">Elo 的来源</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Elo-%E5%9C%A8%E4%BC%98%E5%8C%96%E4%BB%80%E4%B9%88"><span class="toc-number">2.1.</span> <span class="toc-text">Elo 在优化什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EA-%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="toc-number">2.2.</span> <span class="toc-text">EA 的数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2017-%E5%B9%B4%E5%88%B0-2025-%E5%B9%B4%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-number">3.</span> <span class="toc-text">2017 年到 2025 年的研究</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#EOMM%EF%BC%88EA-UCLA%EF%BC%8C2017%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">EOMM（EA + UCLA，2017）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OptMatch%EF%BC%88NetEase-%E6%B8%85%E5%8D%8E%EF%BC%8CKDD-2020%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">OptMatch（NetEase + 清华，KDD 2020）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EnMatch%EF%BC%88NetEase%EF%BC%8CAAAI-2024%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">EnMatch（NetEase，AAAI 2024）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XDefiant"><span class="toc-number">3.4.</span> <span class="toc-text">XDefiant</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F%E8%A2%AB%E8%BF%87%E5%BA%A6%E8%AE%A8%E8%AE%BA%E4%BA%86"><span class="toc-number">4.</span> <span class="toc-text">匹配系统被过度讨论了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6%E7%9C%9F%E6%AD%A3%E5%9C%A8%E6%84%8F%E7%9A%84%EF%BC%9A%E4%B8%89%E6%84%9F"><span class="toc-number">5.</span> <span class="toc-text">玩家真正在意的：三感</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E9%95%BF%E6%84%9F"><span class="toc-number">5.1.</span> <span class="toc-text">成长感</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%80%E7%BC%BA%E6%84%9F"><span class="toc-number">5.2.</span> <span class="toc-text">稀缺感</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E6%8A%80%E6%84%9F"><span class="toc-number">5.3.</span> <span class="toc-text">竞技感</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%84%9F%E4%BA%92%E7%9B%B8%E5%86%B2%E7%AA%81"><span class="toc-number">5.4.</span> <span class="toc-text">三感互相冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dota-2%EF%BC%9A%E7%94%A8%E5%8F%98%E5%8C%96%E8%AE%A9%E4%BD%A0%E5%BF%98%E4%BA%86%E5%8C%B9%E9%85%8D"><span class="toc-number">6.</span> <span class="toc-text">Dota 2：用变化让你忘了匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CS2%EF%BC%9A%E7%B2%BE%E8%BF%9B%EF%BC%8C%E4%B8%8D%E6%98%AF%E5%8F%98%E5%8C%96"><span class="toc-number">7.</span> <span class="toc-text">CS2：精进，不是变化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E7%A7%8D%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%90%8C%E4%B8%80%E5%AE%B6%E5%85%AC%E5%8F%B8"><span class="toc-number">8.</span> <span class="toc-text">两种路径，同一家公司</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%83%8F%E5%8D%95%E6%9C%BA%E4%B8%80%E6%A0%B7%E5%81%9A%E7%AB%9E%E6%8A%80%E6%B8%B8%E6%88%8F"><span class="toc-number">9.</span> <span class="toc-text">像单机一样做竞技游戏</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/game-test-ch3/" title="从作弊码到UE5调试后门-学习《游戏测试完全指南》"><img src="/img/game-test-ch3/cover.jpg" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="从作弊码到UE5调试后门-学习《游戏测试完全指南》"/></a><div class="content"><a class="title" href="/posts/game-test-ch3/" title="从作弊码到UE5调试后门-学习《游戏测试完全指南》">从作弊码到UE5调试后门-学习《游戏测试完全指南》</a><time datetime="2026-06-22T12:00:00.000Z" title="发表于 2026-06-22 20:00:00">2026-06-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/game-test-ch2/" title="游戏人工测试的思维工具，学习《游戏测试完全指南》"><img src="/img/game-test-ch2/cover.jpg" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="游戏人工测试的思维工具，学习《游戏测试完全指南》"/></a><div class="content"><a class="title" href="/posts/game-test-ch2/" title="游戏人工测试的思维工具，学习《游戏测试完全指南》">游戏人工测试的思维工具，学习《游戏测试完全指南》</a><time datetime="2026-06-21T12:00:00.000Z" title="发表于 2026-06-21 20:00:00">2026-06-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/game-test-ch1/" title="游戏测试和普通测试到底差在哪?学习《游戏测试完全指南》"><img src="/img/game-test-ch1/cover.jpg" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="游戏测试和普通测试到底差在哪?学习《游戏测试完全指南》"/></a><div class="content"><a class="title" href="/posts/game-test-ch1/" title="游戏测试和普通测试到底差在哪?学习《游戏测试完全指南》">游戏测试和普通测试到底差在哪?学习《游戏测试完全指南》</a><time datetime="2026-06-17T06:07:00.000Z" title="发表于 2026-06-17 14:07:00">2026-06-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/f2p-cake-dilemma/" title="F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍"><img src="/img/f2p-cake-dilemma/cover.jpg" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍"/></a><div class="content"><a class="title" href="/posts/f2p-cake-dilemma/" title="F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍">F2P 游戏的切蛋糕困境：免费内容与付费内容的取舍</a><time datetime="2026-06-15T16:00:00.000Z" title="发表于 2026-06-16 00:00:00">2026-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/dota2-mod-editor-first-look/" title="DOTA2 Mod编辑器初探"><img src="/img/dota2-mod-editor-first-look/cover.jpg" onerror="this.onerror=null;this.src='https://i.miji.bid/2024/01/28/be906bda3da55c02f25b8d88b6391a38.webp'" alt="DOTA2 Mod编辑器初探"/></a><div class="content"><a class="title" href="/posts/dota2-mod-editor-first-look/" title="DOTA2 Mod编辑器初探">DOTA2 Mod编辑器初探</a><time datetime="2026-06-15T11:20:00.000Z" title="发表于 2026-06-15 19:20:00">2026-06-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/competitive-illusion/cover.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Kurami Wan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="156013738" data-server="netease" data-type="album" data-fixed="true" data-autoplay="false" data-lrcType="-1"> </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
