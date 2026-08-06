@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LyraStarterGame 测试文档 | Wan的技术博客</title><meta name="author" content="Kurami Wan"><meta name="copyright" content="Kurami Wan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LyraStarterGame 测试文档 本文档来自 LyraStarterGame（UE 5.8）项目的完整测试记录（TestDocs），随博客文章《对UE的教学项目进行测试实录》一起发布。目录可点击跳转。  00-总纲 00-测试总纲 测试计划 用例分级清单 13-测试辅助API设计方案 15-UnLuaTestDSL设计方案 16-LuaDSL-API参考 17-Lua测试框架复盘 18-封">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>LyraStarterGame 测试文档 | Wan的技术博客</title><meta name="author" content="Kurami Wan"><meta name="copyright" content="Kurami Wan"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="LyraStarterGame 测试文档 本文档来自 LyraStarterGame（UE 5.8）项目的完整测试记录（TestDocs），随博客文章《对UE的教学项目进行测试实录》一起发布。目录可点击跳转。  00-总纲 00-测试总纲 用例分级清单 13-测试辅助API设计方案 15-UnLuaTestDSL设计方案 16-LuaDSL-API参考 17-Lua测试框架复盘 18-封板审查材料">
 <meta property="og:type" content="website">
 <meta property="og:title" content="LyraStarterGame 测试文档">
 <meta property="og:url" content="https://kuramiwan.github.io/testdocs/index.html">
 <meta property="og:site_name" content="Wan的技术博客">
-<meta property="og:description" content="LyraStarterGame 测试文档 本文档来自 LyraStarterGame（UE 5.8）项目的完整测试记录（TestDocs），随博客文章《对UE的教学项目进行测试实录》一起发布。目录可点击跳转。  00-总纲 00-测试总纲 测试计划 用例分级清单 13-测试辅助API设计方案 15-UnLuaTestDSL设计方案 16-LuaDSL-API参考 17-Lua测试框架复盘 18-封">
+<meta property="og:description" content="LyraStarterGame 测试文档 本文档来自 LyraStarterGame（UE 5.8）项目的完整测试记录（TestDocs），随博客文章《对UE的教学项目进行测试实录》一起发布。目录可点击跳转。  00-总纲 00-测试总纲 用例分级清单 13-测试辅助API设计方案 15-UnLuaTestDSL设计方案 16-LuaDSL-API参考 17-Lua测试框架复盘 18-封板审查材料">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kuramiwan.github.io/img/site/avatar.webp">
-<meta property="article:published_time" content="2026-08-05T04:15:54.075Z">
-<meta property="article:modified_time" content="2026-08-05T04:15:54.075Z">
+<meta property="article:published_time" content="2026-08-06T03:32:53.551Z">
+<meta property="article:modified_time" content="2026-08-06T03:32:53.551Z">
 <meta property="article:author" content="Kurami Wan">
 <meta property="article:tag" content="kurami">
 <meta property="article:tag" content="wan">
@@ -63,7 +63,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2026-08-05 12:15:54'
+  postUpdate: '2026-08-06 11:32:53'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -191,42 +191,42 @@
 </blockquote>
 <h2 id="00-总纲"><a href="#00-总纲" class="headerlink" title="00-总纲"></a>00-总纲</h2><ul>
 <li><a href="#doc-00">00-测试总纲</a></li>
-<li><a href="#doc-01">测试计划</a></li>
-<li><a href="#doc-02">用例分级清单</a></li>
-<li><a href="#doc-03">13-测试辅助API设计方案</a></li>
-<li><a href="#doc-04">15-UnLuaTestDSL设计方案</a></li>
-<li><a href="#doc-05">16-LuaDSL-API参考</a></li>
-<li><a href="#doc-06">17-Lua测试框架复盘</a></li>
-<li><a href="#doc-07">18-封板审查材料</a></li>
-<li><a href="#doc-08">19-CQTest代码审查报告</a></li>
-<li><a href="#doc-09">20-测试总结报告</a></li>
+<li><a href="#doc-01">用例分级清单</a></li>
+<li><a href="#doc-02">13-测试辅助API设计方案</a></li>
+<li><a href="#doc-03">15-UnLuaTestDSL设计方案</a></li>
+<li><a href="#doc-04">16-LuaDSL-API参考</a></li>
+<li><a href="#doc-05">17-Lua测试框架复盘</a></li>
+<li><a href="#doc-06">18-封板审查材料</a></li>
+<li><a href="#doc-07">19-CQTest代码审查报告</a></li>
+<li><a href="#doc-08">20-测试总结报告</a></li>
 </ul>
 <h2 id="01-系统测试"><a href="#01-系统测试" class="headerlink" title="01-系统测试"></a>01-系统测试</h2><ul>
-<li><a href="#doc-10">01-武器与装备系统</a></li>
-<li><a href="#doc-11">02-控制系统</a></li>
-<li><a href="#doc-12">03-相机系统</a></li>
-<li><a href="#doc-13">04-HUD</a></li>
-<li><a href="#doc-14">05-前端页面</a></li>
-<li><a href="#doc-15">06-音频系统</a></li>
-<li><a href="#doc-16">07-队伍系统</a></li>
-<li><a href="#doc-17">08-初始化链路系统</a></li>
-<li><a href="#doc-18">09-状态系统</a></li>
-<li><a href="#doc-19">10-事件测试</a></li>
+<li><a href="#doc-09">01-武器与装备系统</a></li>
+<li><a href="#doc-10">02-控制系统</a></li>
+<li><a href="#doc-11">03-相机系统</a></li>
+<li><a href="#doc-12">04-HUD</a></li>
+<li><a href="#doc-13">05-前端页面</a></li>
+<li><a href="#doc-14">06-音频系统</a></li>
+<li><a href="#doc-15">07-队伍系统</a></li>
+<li><a href="#doc-16">08-初始化链路系统</a></li>
+<li><a href="#doc-17">09-状态系统</a></li>
+<li><a href="#doc-18">10-事件测试</a></li>
 </ul>
 <h2 id="02-专项测试"><a href="#02-专项测试" class="headerlink" title="02-专项测试"></a>02-专项测试</h2><ul>
-<li><a href="#doc-20">10-性能测试</a></li>
-<li><a href="#doc-21">11-探索性测试</a></li>
-<li><a href="#doc-22">13-性能测试可行性调研</a></li>
-<li><a href="#doc-23">21-EX-01-探索性测试宪章-地图互动效果</a></li>
-<li><a href="#doc-24">EX-01-会话记录</a></li>
-<li><a href="#doc-25">EX-01-探索小结</a></li>
+<li><a href="#doc-19">10-性能测试</a></li>
+<li><a href="#doc-20">11-探索性测试</a></li>
+<li><a href="#doc-21">13-性能测试可行性调研</a></li>
+<li><a href="#doc-22">21-EX-01-探索性测试宪章-地图互动效果</a></li>
+<li><a href="#doc-23">EX-01-会话记录</a></li>
+<li><a href="#doc-24">EX-01-探索小结</a></li>
 </ul>
 <h2 id="03-实施"><a href="#03-实施" class="headerlink" title="03-实施"></a>03-实施</h2><ul>
-<li><a href="#doc-26">12-测试实施计划</a></li>
-<li><a href="#doc-27">14-蓝图功能测试实战-WF-01-01</a></li>
-<li><a href="#doc-28">测试工作流清单</a></li>
+<li><a href="#doc-25">12-测试实施计划</a></li>
+<li><a href="#doc-26">14-蓝图功能测试实战-WF-01-01</a></li>
+<li><a href="#doc-27">测试工作流清单</a></li>
 </ul>
 <h2 id="Bug报告"><a href="#Bug报告" class="headerlink" title="Bug报告"></a>Bug报告</h2><ul>
+<li><a href="#doc-28">00-Bug清单</a></li>
 <li><a href="#doc-29">EX-01-01-弹射器Dash中触发弹射力度被削弱</a></li>
 <li><a href="#doc-30">EX-01-02-方向弹射器按玩家朝向弹射而非速度方向</a></li>
 <li><a href="#doc-31">EX-01-03-玩法建议-手雷可触发弹射装置</a></li>
@@ -314,744 +314,6 @@
 </ol>
 <hr>
 <p><a id="doc-01"></a></p>
-<h2 id="LyraStarterGame-测试计划"><a href="#LyraStarterGame-测试计划" class="headerlink" title="LyraStarterGame 测试计划"></a>LyraStarterGame 测试计划</h2><blockquote>
-<p>本文档是”测试宪章”与”测试实施”之间的桥梁：从宪章定下”测什么”出发，规划”按什么顺序实现、每个阶段重点做什么、做到什么程度算完成”。</p>
-</blockquote>
-<blockquote>
-<p>── 实践经验 ──<br>武器切换测试告诉我们：在 Lyra 的 CQTest + FMapTestSpawner 框架下，所有测试本质是<strong>集成测试</strong>。<br>HUD 报错不是测试设计有误，而是集成测试的固有噪音。见第 8 节《测试设计原则》。</p>
-</blockquote>
-<h3 id="文档关系"><a href="#文档关系" class="headerlink" title="文档关系"></a>文档关系</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00-测试总纲.md          ← 系统划分 + 测试原则（定&quot;格局&quot;）</span><br><span class="line">00-测试计划.md  ← 本文件 ← 实现优先级 + 路线图 + 质量门禁（定&quot;节奏&quot;）</span><br><span class="line">01-系统测试/*.md         ← 各系统测试宪章（定&quot;用例&quot;）</span><br><span class="line">02-专项测试/*.md         ← 性能 + 探索性（定&quot;用例&quot;）</span><br><span class="line">03-实施/12-测试实施计划.md ← 环境搭建 + 工具选择 + Bug 模板（定&quot;怎么干&quot;）</span><br><span class="line">Source/LyraGame/Tests/  ← 自动化实现（CQTest / Gauntlet / Spec）</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="1-范围与统计"><a href="#1-范围与统计" class="headerlink" title="1. 范围与统计"></a>1. 范围与统计</h3><p>11 个测试系统，共计 <strong>88 个测试用例（含236个子状态）</strong> + 探索性测试 6 轮，覆盖自动化（CQTest &#x2F; Gauntlet &#x2F; AutomationDriver）与手工验证。</p>
-<table>
-<thead>
-<tr>
-<th>系统</th>
-<th>用例数</th>
-<th>自动化</th>
-<th>手工</th>
-<th>推荐工具</th>
-<th>实现状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>01 武器与装备</td>
-<td>14（含28子状态）</td>
-<td>21</td>
-<td>12</td>
-<td>CQTest + 手工</td>
-<td>✅ EQ&#x2F;WS 已 CQTest；WF 已用蓝图功能测试完成（与宪章 CQTest 决策不符，先这么用）</td>
-</tr>
-<tr>
-<td>02 控制系统</td>
-<td>13（含46子状态）</td>
-<td>30</td>
-<td>18</td>
-<td>CQTest</td>
-<td>✅ CQTest 30&#x2F;30</td>
-</tr>
-<tr>
-<td>03 相机系统</td>
-<td>8（含27子状态）</td>
-<td>0</td>
-<td>23</td>
-<td>手工</td>
-<td>✅ 数值 9&#x2F;9（NV-01&#x2F;02 单元）；功能手工完成（Session 2）</td>
-</tr>
-<tr>
-<td>04 HUD</td>
-<td>5（含22子状态）</td>
-<td>0</td>
-<td>22</td>
-<td>手工</td>
-<td>✅ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td>05 前端页面</td>
-<td>5（含18子状态）</td>
-<td>18</td>
-<td>0</td>
-<td>Spec + Gauntlet</td>
-<td>⏳ Elimination 菜单已实现</td>
-</tr>
-<tr>
-<td>06 音频系统</td>
-<td>6（含16子状态）</td>
-<td>0</td>
-<td>16</td>
-<td>手工</td>
-<td>✅ 数值 8&#x2F;8+ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td>07 队伍系统</td>
-<td>5（含14子状态）</td>
-<td>0</td>
-<td>14</td>
-<td>手工</td>
-<td>✅ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td>08 初始化链路</td>
-<td>6（含19子状态）</td>
-<td>19</td>
-<td>0</td>
-<td>CQTest + Gauntlet</td>
-<td>✅ 5&#x2F;5（ShooterMaps 5 地图，回归）</td>
-</tr>
-<tr>
-<td><del>09 状态系统</del></td>
-<td><del>4（含14子状态）</del></td>
-<td><del>10</del></td>
-<td><del>3</del></td>
-<td>—</td>
-<td>🚫 不需要（决策）</td>
-</tr>
-<tr>
-<td>10 事件测试</td>
-<td>13（含46子状态）</td>
-<td>46</td>
-<td>0</td>
-<td>CQTest + PIENetworkComponent</td>
-<td>✅ 13&#x2F;13（DT-01&#x2F;03&#x2F;05&#x2F;06&#x2F;07，修复后复跑；DT-04 网络暂缓 → 已知缺口）</td>
-</tr>
-<tr>
-<td>11 性能测试</td>
-<td>12</td>
-<td>12</td>
-<td>0</td>
-<td>Gauntlet</td>
-<td>❌ 已知缺口（可行性调研：本机 36 实例需 3~6h，封板日不做全量）</td>
-</tr>
-<tr>
-<td>探索性测试</td>
-<td>6 轮</td>
-<td>—</td>
-<td>6 轮</td>
-<td>手工</td>
-<td>❌ 已知缺口（封板后 backlog）</td>
-</tr>
-<tr>
-<td><strong>合计</strong></td>
-<td><strong>84（含238子状态）</strong></td>
-<td><strong>148</strong></td>
-<td><strong>91 + 6轮</strong></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="2-实现优先级"><a href="#2-实现优先级" class="headerlink" title="2. 实现优先级"></a>2. 实现优先级</h3><p>按风险等级和系统间依赖排序：</p>
-<table>
-<thead>
-<tr>
-<th>优先级</th>
-<th>系统</th>
-<th>理由</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>P0 基石</strong></td>
-<td>初始化链路、前端页面</td>
-<td>游戏必须能启动、能导航到对局，后续所有测试依赖</td>
-</tr>
-<tr>
-<td><strong>P1 核心</strong></td>
-<td>武器与装备 → 控制系统</td>
-<td>核心玩法闭环：拿起武器 → 移动操作 → 造成伤害 → 死亡&#x2F;重生</td>
-</tr>
-<tr>
-<td><strong>P2 表现</strong></td>
-<td>相机 → HUD → 队伍 → 音频</td>
-<td>核心玩法可用后的体验验证，大量手工判断</td>
-</tr>
-<tr>
-<td><strong>P3 压轴</strong></td>
-<td>性能 → 探索性</td>
-<td>需要其他系统稳定后才有效果</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="4-自动化实现指引"><a href="#4-自动化实现指引" class="headerlink" title="4. 自动化实现指引"></a>4. 自动化实现指引</h3><h4 id="4-1-测试框架选择"><a href="#4-1-测试框架选择" class="headerlink" title="4.1 测试框架选择"></a>4.1 测试框架选择</h4><table>
-<thead>
-<tr>
-<th>框架</th>
-<th>文件位置</th>
-<th>适用场景</th>
-<th>入口</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>CQTest</strong></td>
-<td><code>Source/LyraGame/Tests/CQTest/</code></td>
-<td>单进程、游戏内组件精确验证、数值边界&#x2F;循环遍历、输入模拟、网络同步</td>
-<td><code>TEST_CLASS</code> + <code>FMapTestSpawner</code></td>
-</tr>
-<tr>
-<td><strong>Spec (AutomationDriver)</strong></td>
-<td><code>Source/LyraGame/Tests/</code></td>
-<td>UI 交互流程、菜单导航、前端页面</td>
-<td><code>BEGIN_DEFINE_SPEC</code></td>
-</tr>
-<tr>
-<td><strong>Gauntlet</strong></td>
-<td><code>Source/LyraGame/Tests/</code></td>
-<td>多进程、启动链路、性能逐帧采集</td>
-<td><code>UGauntletTestController</code> 子类</td>
-</tr>
-</tbody></table>
-<h4 id="4-2-CQTest-标准模式"><a href="#4-2-CQTest-标准模式" class="headerlink" title="4.2 CQTest 标准模式"></a>4.2 CQTest 标准模式</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件: Source/LyraGame/Tests/CQTest/系统名.spec.cpp</span></span><br><span class="line"><span class="comment">// 参考: WeaponSystem_Equipment.spec.cpp (379 行)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;CQTest.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Components/MapTestSpawner.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> WITH_DEV_AUTOMATION_TESTS</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">TEST_CLASS</span>(FMySystemSpec, <span class="string">&quot;Project.MySystem&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line">    TUniquePtr&lt;FMapTestSpawner&gt; MapSpawner;</span><br><span class="line">    APawn* PlayerPawn = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">BEFORE_EACH</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        MapSpawner = <span class="built_in">MakeUnique</span>&lt;FMapTestSpawner&gt;(</span><br><span class="line">            <span class="built_in">TEXT</span>(<span class="string">&quot;/ShooterMaps/Maps&quot;</span>), <span class="built_in">TEXT</span>(<span class="string">&quot;L_Expanse&quot;</span>));</span><br><span class="line">        MapSpawner-&gt;<span class="built_in">AddWaitUntilLoadedCommand</span>(TestRunner);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">TEST_METHOD</span>(Case_01_Description)</span><br><span class="line">    &#123;</span><br><span class="line">        TestCommandBuilder</span><br><span class="line">            .<span class="built_in">StartWhen</span>([<span class="keyword">this</span>]() &#123;</span><br><span class="line">                PlayerPawn = MapSpawner-&gt;<span class="built_in">FindFirstPlayerPawn</span>();</span><br><span class="line">                <span class="keyword">return</span> PlayerPawn != <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;)</span><br><span class="line">            .<span class="built_in">Then</span>([<span class="keyword">this</span>]()</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// Act + Assert</span></span><br><span class="line">                <span class="built_in">ASSERT_THAT</span>(<span class="built_in">AreEqual</span>(expected, actual));</span><br><span class="line">            &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
-<h4 id="4-3-CQTest-标准模式（含输入模拟）"><a href="#4-3-CQTest-标准模式（含输入模拟）" class="headerlink" title="4.3 CQTest 标准模式（含输入模拟）"></a>4.3 CQTest 标准模式（含输入模拟）</h4><blockquote>
-<p>蓝图功能测试（FunctionalTest 蓝图）已弃用（决策），输入模拟类用例统一用 CQTest + <code>InputTestActions</code> 实现。</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输入模拟: 按下/按住/松开</span></span><br><span class="line">TestCommandBuilder</span><br><span class="line">    .<span class="built_in">StartWhen</span>([<span class="keyword">this</span>]() &#123; <span class="keyword">return</span> MapSpawner-&gt;<span class="built_in">FindFirstPlayerPawn</span>() != <span class="literal">nullptr</span>; &#125;)</span><br><span class="line">    .<span class="built_in">Then</span>([<span class="keyword">this</span>]()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// InputTestActions 注入输入 → 等待 → 断言</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<h4 id="4-4-各系统实现映射"><a href="#4-4-各系统实现映射" class="headerlink" title="4.4 各系统实现映射"></a>4.4 各系统实现映射</h4><table>
-<thead>
-<tr>
-<th>系统</th>
-<th>框架</th>
-<th>文件&#x2F;蓝图名</th>
-<th>用例对应</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>武器-装备</td>
-<td>C++ CQTest</td>
-<td><code>WeaponSystem_Equipment.spec.cpp</code></td>
-<td>EQ-01~05</td>
-<td>✅ 已完成</td>
-</tr>
-<tr>
-<td>武器-功能</td>
-<td>🟦 蓝图功能测试（实际执行）&#x2F; C++ CQTest（宪章）</td>
-<td><code>ShooterTests/Content/Blueprint/weapon/WF_*.uasset</code>（WF-01-01<del>04、WF-02-01</del>03）</td>
-<td>WF-01~02</td>
-<td>✅ 蓝图完成（决策：与宪章 CQTest 不符，先按蓝图执行；CQTest 仅 WF-01-04 有 <code>WeaponSystem_Firing.spec.cpp</code>）</td>
-</tr>
-<tr>
-<td>武器-数值</td>
-<td>C++ CQTest</td>
-<td><code>WeaponSystem_Numerics.spec.cpp</code></td>
-<td>WS-01~04</td>
-<td>✅ 已完成（基线回归 21&#x2F;21）</td>
-</tr>
-<tr>
-<td>武器-动画</td>
-<td>手工</td>
-<td>—</td>
-<td>WA-01~03</td>
-<td>✅ 手工完成（Session 1）</td>
-</tr>
-<tr>
-<td>控制系统</td>
-<td>C++ CQTest</td>
-<td><code>ControlSystem.spec.cpp</code></td>
-<td>MV-01<del>03, AM-01</del>03</td>
-<td>✅ 30&#x2F;30</td>
-</tr>
-<tr>
-<td>控制数值</td>
-<td>C++ CQTest</td>
-<td>并入 <code>ControlSystem.spec.cpp</code></td>
-<td>NV-01&#x2F;03&#x2F;05</td>
-<td>✅ 已完成</td>
-</tr>
-<tr>
-<td>相机功能</td>
-<td>手工</td>
-<td>—</td>
-<td>CM-01&#x2F;02&#x2F;05</td>
-<td>✅ 手工完成（Session 2）</td>
-</tr>
-<tr>
-<td>相机数值</td>
-<td>C++ CQTest</td>
-<td><code>CameraSystem_Numeric.spec.cpp</code></td>
-<td>NV-01~02</td>
-<td>✅ 9&#x2F;9</td>
-</tr>
-<tr>
-<td>HUD</td>
-<td>手工</td>
-<td>—</td>
-<td>HD-01~05</td>
-<td>✅ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td>前端页面</td>
-<td>Spec + Gauntlet</td>
-<td><code>MenuStartElimination.spec.cpp</code> ✅</td>
-<td>FE-02~06</td>
-<td>⏳ 部分已有</td>
-</tr>
-<tr>
-<td>音频</td>
-<td>手工</td>
-<td>—</td>
-<td>AU-01~04</td>
-<td>✅ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td>音频数值</td>
-<td>C++ CQTest</td>
-<td><code>AudioSystem_Numeric.spec.cpp</code></td>
-<td>NV-01~02</td>
-<td>✅ 8&#x2F;8</td>
-</tr>
-<tr>
-<td>队伍</td>
-<td>手工</td>
-<td>—</td>
-<td>TM-01~05</td>
-<td>✅ 手工完成（Session 3）</td>
-</tr>
-<tr>
-<td><del>队伍数值</del></td>
-<td><del>C++ CQTest</del></td>
-<td><del><code>TeamSystem_Numeric.spec.cpp</code>（新建）</del></td>
-<td><del>NV-01</del></td>
-<td>🚫 已删（：无队伍数量参数）</td>
-</tr>
-<tr>
-<td>初始化链路</td>
-<td>C++ CQTest + Gauntlet</td>
-<td><code>InitChain/ShooterMapsInit.spec.cpp</code> + <code>LyraTestControllerBootTest</code></td>
-<td>IN-01~05</td>
-<td>✅ 5&#x2F;5（回归）</td>
-</tr>
-<tr>
-<td><del>状态系统</del></td>
-<td><del>C++ CQTest</del></td>
-<td><del><code>StatusSystem.spec.cpp</code>（新建）</del></td>
-<td><del>ST-01, NV-01~02</del></td>
-<td>🚫 不需要</td>
-</tr>
-<tr>
-<td>事件-死亡</td>
-<td>C++ CQTest + PIENetwork</td>
-<td><code>EventSystem_Death.spec.cpp</code></td>
-<td>DT-01~07</td>
-<td>✅ 13&#x2F;13（DT-04 网络暂缓 → 已知缺口）</td>
-</tr>
-<tr>
-<td>性能测试</td>
-<td>Gauntlet</td>
-<td><code>LyraTestController*</code> 扩展</td>
-<td>PF-01~12</td>
-<td>❌ 已知缺口（可行性调研，封板后 backlog）</td>
-</tr>
-</tbody></table>
-<h4 id="4-4-已有实现覆盖"><a href="#4-4-已有实现覆盖" class="headerlink" title="4.4 已有实现覆盖"></a>4.4 已有实现覆盖</h4><table>
-<thead>
-<tr>
-<th>文件</th>
-<th>覆盖用例</th>
-<th>类型</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>Tests/CQTest/WeaponSystem_Equipment.spec.cpp</code></td>
-<td>EQ-01~05（5主用例）</td>
-<td>CQTest</td>
-</tr>
-<tr>
-<td><code>Plugins/GameFeatures/ShooterTests/Content/Blueprint/weapon/WF_*.uasset</code> + 对应地图</td>
-<td>WF-01-01<del>04、WF-02-01</del>03</td>
-<td>🟦 蓝图功能测试（实际执行；与宪章 CQTest 决策不符，先这么用）</td>
-</tr>
-<tr>
-<td><code>Tests/MenuStartElimination.spec.cpp</code></td>
-<td>FE-02~06（部分）</td>
-<td>Spec</td>
-</tr>
-<tr>
-<td><code>Tests/LyraTestControllerBootTest.h/.cpp</code></td>
-<td>启动链路（部分）</td>
-<td>Gauntlet</td>
-</tr>
-<tr>
-<td><code>Tests/LyraTestControllerStartEliminationTest.h/.cpp</code></td>
-<td>Elimination 启动（部分）</td>
-<td>Gauntlet</td>
-</tr>
-<tr>
-<td><code>Tests/LyraInventoryItemInstance.spec.cpp</code></td>
-<td>库存物品实例（辅助）</td>
-<td>Spec</td>
-</tr>
-<tr>
-<td><code>Tests/GameplayTagStack.spec.cpp</code></td>
-<td>GameplayTag 堆栈（辅助）</td>
-<td>Spec</td>
-</tr>
-<tr>
-<td><code>Tests/InitChain/ShooterMapsInit.spec.cpp</code></td>
-<td>IN-01~02（部分） — 5地图加载+装备+AI</td>
-<td>CQTest</td>
-</tr>
-<tr>
-<td><code>Tests/EventSystem_Death.spec.cpp</code>（计划）</td>
-<td>DT-01~07 — 死亡&#x2F;复活&#x2F;网络同步</td>
-<td>CQTest + PIENetworkComponent</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="5-手工测试执行清单"><a href="#5-手工测试执行清单" class="headerlink" title="5. 手工测试执行清单"></a>5. 手工测试执行清单</h3><h4 id="优先级-🔴-高（核心功能，必须通过）"><a href="#优先级-🔴-高（核心功能，必须通过）" class="headerlink" title="优先级 🔴 高（核心功能，必须通过）"></a>优先级 🔴 高（核心功能，必须通过）</h4><table>
-<thead>
-<tr>
-<th>编号</th>
-<th>用例名</th>
-<th>系统</th>
-<th>步骤摘要</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>EQ-01</td>
-<td>初始武器状态</td>
-<td>武器</td>
-<td>进入游戏 → 检查初始武器</td>
-</tr>
-<tr>
-<td>EQ-02</td>
-<td>武器切换（含滚轮&#x2F;数字等5种状态）</td>
-<td>武器</td>
-<td>滚轮&#x2F;数字键 → 切换武器</td>
-</tr>
-<tr>
-<td>EQ-03</td>
-<td>装备武器</td>
-<td>武器</td>
-<td>走近武器 → 拾取</td>
-</tr>
-<tr>
-<td>CM-01</td>
-<td>相机跟随角色移动</td>
-<td>相机</td>
-<td>移动角色 → 相机平滑跟随</td>
-</tr>
-<tr>
-<td>CM-06</td>
-<td>贴墙时相机推近</td>
-<td>相机</td>
-<td>靠墙 → 相机推近不穿模</td>
-</tr>
-<tr>
-<td><del>CM-10</del></td>
-<td><del>默认 FOV</del></td>
-<td><del>相机</del></td>
-<td><del>进入游戏 → 80° 视角</del> 🚫 已删（无可调 FOV）</td>
-</tr>
-<tr>
-<td><del>CM-13</del></td>
-<td><del>默认→能力相机切换</del></td>
-<td><del>相机</del></td>
-<td><del>瞄准 → 平滑过渡</del> 🚫 已删（无相机切换）</td>
-</tr>
-<tr>
-<td>HD-01</td>
-<td>准星显示</td>
-<td>HUD</td>
-<td>持有武器 → 准星可见</td>
-</tr>
-<tr>
-<td>HD-07</td>
-<td>命中敌人显示标记</td>
-<td>HUD</td>
-<td>命中 → 标记出现</td>
-</tr>
-<tr>
-<td>HD-18</td>
-<td>血条显示</td>
-<td>HUD</td>
-<td>进入游戏 → 血条可见</td>
-</tr>
-<tr>
-<td>HD-19</td>
-<td>受伤后血条变化</td>
-<td>HUD</td>
-<td>受伤 → 血条减少</td>
-</tr>
-<tr>
-<td>HD-21</td>
-<td>当前武器信息</td>
-<td>HUD</td>
-<td>持有武器 → 武器名&#x2F;弹药显示</td>
-</tr>
-<tr>
-<td>LC-01</td>
-<td>鼠标水平视角</td>
-<td>控制</td>
-<td>移动鼠标 → 水平旋转</td>
-</tr>
-<tr>
-<td>LC-02</td>
-<td>鼠标垂直视角</td>
-<td>控制</td>
-<td>移动鼠标 → 垂直调整</td>
-</tr>
-<tr>
-<td>TM-05</td>
-<td>友军标记</td>
-<td>队伍</td>
-<td>观察队友 → 友军标记</td>
-</tr>
-<tr>
-<td>TM-06</td>
-<td>敌军标记</td>
-<td>队伍</td>
-<td>观察敌人 → 敌军标记</td>
-</tr>
-<tr>
-<td>TM-07</td>
-<td>友军伤害</td>
-<td>队伍</td>
-<td>射队友 → 无伤害&#x2F;受限</td>
-</tr>
-</tbody></table>
-<h4 id="优先级-🟡-中（重要体验，尽力通过）"><a href="#优先级-🟡-中（重要体验，尽力通过）" class="headerlink" title="优先级 🟡 中（重要体验，尽力通过）"></a>优先级 🟡 中（重要体验，尽力通过）</h4><table>
-<thead>
-<tr>
-<th>编号范围</th>
-<th>系统</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>WF-02-04&#x2F;05</td>
-<td>武器</td>
-<td>换弹&#x2F;射击互斥（决策：手工补验）。① 射击中按换弹键 → 射击被打断、执行换弹；② 换弹中按射击键 → 换弹被打断、弹药不恢复、换弹动画停止</td>
-</tr>
-<tr>
-<td>EQ-02-03<del>05, EQ-04</del>05</td>
-<td>武器</td>
-<td>快速切换&#x2F;空槽位&#x2F;满槽&#x2F;冷却</td>
-</tr>
-<tr>
-<td>WA-01~03</td>
-<td>武器</td>
-<td>装备&#x2F;换弹&#x2F;射击动画</td>
-</tr>
-<tr>
-<td>AN-01</td>
-<td>控制</td>
-<td>移动&#x2F;跳跃&#x2F;蹲下&#x2F;Dash&#x2F;切换动画</td>
-</tr>
-<tr>
-<td>LC-01（全部）</td>
-<td>控制</td>
-<td>手柄视角&#x2F;反转&#x2F;灵敏度</td>
-</tr>
-<tr>
-<td>CM-01&#x2F;02&#x2F;05（全部）</td>
-<td>相机</td>
-<td>旋转&#x2F;碰撞恢复&#x2F;蹲下偏移</td>
-</tr>
-<tr>
-<td>HD-01~05（全部）</td>
-<td>HUD</td>
-<td>全部手工用例</td>
-</tr>
-<tr>
-<td>AU-01~04</td>
-<td>音频</td>
-<td>音量&#x2F;输出&#x2F;HDR&#x2F;加载音频</td>
-</tr>
-<tr>
-<td>TM-01~05</td>
-<td>队伍</td>
-<td>归属&#x2F;显示&#x2F;标签&#x2F;比分</td>
-</tr>
-<tr>
-<td><del>ST-02</del></td>
-<td><del>状态</del></td>
-<td><del>死亡状态机视觉</del> 🚫 已砍</td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="6-质量门禁"><a href="#6-质量门禁" class="headerlink" title="6. 质量门禁"></a>6. 质量门禁</h3><blockquote>
-<p>📌 封板状态：按”功能封板”口径，阶段一<del>三与阶段二点五的<br>单机部分已满足——自动化 96&#x2F;96 全绿、手工 Session 1</del>3 完成、Bug 已登记、无 🔴 阻塞 Bug；<br>阶段二点五的 DT-04 网络与阶段四（性能 36 实例 &#x2F; 探索性 6 轮）列入《已知缺口 &#x2F; 封板后 backlog》，不阻塞封板。</p>
-</blockquote>
-<h4 id="阶段一"><a href="#阶段一" class="headerlink" title="阶段一"></a>阶段一</h4><ul>
-<li><input disabled="" type="checkbox"> <code>FMapTestSpawner</code> 加载 <code>L_Expanse</code> 成功，无崩溃</li>
-<li><input disabled="" type="checkbox"> Experience → GameMode → Pawn → AbilitySet 链路完整</li>
-<li><input disabled="" type="checkbox"> 初始化链路 6 个主用例（含19子状态）全部通过</li>
-<li><input disabled="" type="checkbox"> 主菜单 → 选模式 → 加载 → 进游戏 全部可自动化</li>
-<li><input disabled="" type="checkbox"> 前端页面 5 个主用例（含18子状态）全部通过</li>
-</ul>
-<h4 id="阶段二"><a href="#阶段二" class="headerlink" title="阶段二"></a>阶段二</h4><ul>
-<li><input disabled="" type="checkbox"> 武器功能&#x2F;数值（WF-01<del>02 + WS-01</del>05）全部通过</li>
-<li><input disabled="" type="checkbox"> 控制数值（MV-01<del>03 + AM-01</del>03 + NV-01~04）全部通过</li>
-<li><del>状态系统（ST-01 + NV-01~02）全部通过</del>（已砍，决策）</li>
-<li><input disabled="" type="checkbox"> 边界值（0 &#x2F; 负 &#x2F; 正常）全部覆盖</li>
-<li><input disabled="" type="checkbox"> 无 🔴 阻塞 Bug</li>
-</ul>
-<h4 id="阶段二点五"><a href="#阶段二点五" class="headerlink" title="阶段二点五"></a>阶段二点五</h4><ul>
-<li><input disabled="" type="checkbox"> 死亡单机（DT-01~05，17子状态）全部通过</li>
-<li><input disabled="" type="checkbox"> 死亡网络（DT-04，2子状态）通过</li>
-<li><input disabled="" type="checkbox"> 复活（DT-06~07，9子状态）全部通过</li>
-<li><input disabled="" type="checkbox"> DeathState 在 PIE 多开中复制一致</li>
-<li><input disabled="" type="checkbox"> 无 🔴 阻塞 Bug</li>
-</ul>
-<h4 id="阶段三"><a href="#阶段三" class="headerlink" title="阶段三"></a>阶段三</h4><ul>
-<li><input checked="" disabled="" type="checkbox"> 相机&#x2F;音频 边界值自动化（NV-01<del>02&#x2F;NV-01</del>02）全部通过（9&#x2F;9、8&#x2F;8）</li>
-<li><input checked="" disabled="" type="checkbox"> 手工用例 Session 1~3 全部执行完毕</li>
-<li><input checked="" disabled="" type="checkbox"> 手工发现的 Bug 登记到 <code>TestDocs/Bug报告/</code>（4 份）</li>
-<li><input checked="" disabled="" type="checkbox"> 无 🔴 阻塞 Bug</li>
-</ul>
-<h4 id="阶段四"><a href="#阶段四" class="headerlink" title="阶段四"></a>阶段四</h4><ul>
-<li><input disabled="" type="checkbox"> 性能测试 36 实例全部通过</li>
-<li><input disabled="" type="checkbox"> 60fps 帧时间 ≤ 16ms，99% ≤ 30ms</li>
-<li><input disabled="" type="checkbox"> 500ms 延迟不导致断线</li>
-<li><input disabled="" type="checkbox"> 5min 帧内存无持续增长</li>
-<li><input disabled="" type="checkbox"> 探索性 6 轮完成，无残留 Bug</li>
-</ul>
-<hr>
-<h3 id="7-文件索引"><a href="#7-文件索引" class="headerlink" title="7. 文件索引"></a>7. 文件索引</h3><table>
-<thead>
-<tr>
-<th>文档</th>
-<th>路径</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>测试总纲</td>
-<td><code>TestDocs/00-总纲/00-测试总纲.md</code></td>
-</tr>
-<tr>
-<td>本计划</td>
-<td><code>TestDocs/00-总纲/测试计划.md</code></td>
-</tr>
-<tr>
-<td>武器与装备宪章</td>
-<td><code>TestDocs/01-系统测试/01-武器与装备系统.md</code></td>
-</tr>
-<tr>
-<td>控制系统宪章</td>
-<td><code>TestDocs/01-系统测试/02-控制系统.md</code></td>
-</tr>
-<tr>
-<td>相机系统宪章</td>
-<td><code>TestDocs/01-系统测试/03-相机系统.md</code></td>
-</tr>
-<tr>
-<td>HUD 宪章</td>
-<td><code>TestDocs/01-系统测试/04-HUD.md</code></td>
-</tr>
-<tr>
-<td>前端页面宪章</td>
-<td><code>TestDocs/01-系统测试/05-前端页面.md</code></td>
-</tr>
-<tr>
-<td>音频系统宪章</td>
-<td><code>TestDocs/01-系统测试/06-音频系统.md</code></td>
-</tr>
-<tr>
-<td>队伍系统宪章</td>
-<td><code>TestDocs/01-系统测试/07-队伍系统.md</code></td>
-</tr>
-<tr>
-<td>初始化链路系统宪章</td>
-<td><code>TestDocs/01-系统测试/08-初始化链路系统.md</code></td>
-</tr>
-<tr>
-<td>状态系统宪章 🚫（已砍，历史参考）</td>
-<td><code>TestDocs/01-系统测试/09-状态系统.md</code></td>
-</tr>
-<tr>
-<td>事件测试宪章</td>
-<td><code>TestDocs/01-系统测试/10-事件测试.md</code></td>
-</tr>
-<tr>
-<td>性能测试宪章</td>
-<td><code>TestDocs/02-专项测试/11-性能测试.md</code></td>
-</tr>
-<tr>
-<td>探索性测试</td>
-<td><code>TestDocs/02-专项测试/12-探索性测试.md</code></td>
-</tr>
-<tr>
-<td>测试实施指南</td>
-<td><code>TestDocs/03-实施/13-测试实施计划.md</code></td>
-</tr>
-<tr>
-<td>测试工作流清单</td>
-<td><code>TestDocs/03-实施/测试工作流清单.md</code></td>
-</tr>
-<tr>
-<td>CQTest 参考实现</td>
-<td><code>Source/LyraGame/Tests/CQTest/WeaponSystem_Equipment.spec.cpp</code></td>
-</tr>
-<tr>
-<td>Spec 参考实现</td>
-<td><code>Source/LyraGame/Tests/MenuStartElimination.spec.cpp</code></td>
-</tr>
-<tr>
-<td>Gauntlet 参考实现</td>
-<td><code>Source/LyraGame/Tests/LyraTestControllerBootTest.h/.cpp</code></td>
-</tr>
-</tbody></table>
-<hr>
-<h3 id="8-测试设计原则（实践经验）"><a href="#8-测试设计原则（实践经验）" class="headerlink" title="8. 测试设计原则（实践经验）"></a>8. 测试设计原则（实践经验）</h3><h4 id="8-1-认清你用的测试层级"><a href="#8-1-认清你用的测试层级" class="headerlink" title="8.1 认清你用的测试层级"></a>8.1 认清你用的测试层级</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">单元测试 ─────── NewObject 组件，直接调函数，mock 依赖</span><br><span class="line">集成测试 ─────── FMapTestSpawner 加载真实地图，完整游戏环境跑</span><br><span class="line">端到端测试 ───── Gauntlet 从启动菜单开始，模拟全流程</span><br></pre></td></tr></table></figure>
-
-<p>CQTest + FMapTestSpawner 99% 的用例都是<strong>集成测试</strong>。接受它的特征：</p>
-<table>
-<thead>
-<tr>
-<th>特征</th>
-<th>影响</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>会启动完整的游戏堆栈</td>
-<td>HUD &#x2F; 网络 &#x2F; 动画系统都在跑</td>
-</tr>
-<tr>
-<td>HUD 报错是固有噪音</td>
-<td>不是测试设计问题，用 <code>CreateWeaponItem()</code> 提供完整数据即可</td>
-</tr>
-<tr>
-<td>Server RPC 在同一帧执行</td>
-<td>不需要 <code>Until</code> 等待（单机 PIE 有权限）</td>
-</tr>
-<tr>
-<td>测试覆盖了整个系统</td>
-<td>断言只测关心的部分，其他部分是”附带运行的”</td>
-</tr>
-</tbody></table>
-<h4 id="8-2-用例划分应在”功能路径”层面，不在”系统”层面"><a href="#8-2-用例划分应在”功能路径”层面，不在”系统”层面" class="headerlink" title="8.2 用例划分应在”功能路径”层面，不在”系统”层面"></a>8.2 用例划分应在”功能路径”层面，不在”系统”层面</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">✅ 正确的视角：</span><br><span class="line">  &quot;玩家进入游戏 → 持有初始手枪&quot;          ← 一条功能路径</span><br><span class="line">  &quot;玩家按数字键 2 → 切换到槽位 2 武器&quot;     ← 一条功能路径</span><br><span class="line"></span><br><span class="line">❌ 错误的视角：</span><br><span class="line">  &quot;武器系统 → 装备模块 → 切换功能&quot;        ← 系统内部解构</span><br><span class="line">  &quot;HUD 系统 → 准星模块 → 准星显示&quot;        ← 系统内部解构</span><br></pre></td></tr></table></figure>
-
-<p><strong>宪章中的系统划分（武器&#x2F;控制&#x2F;HUD）是给手工测试用的</strong>。自动化测试的用例划分应当以”玩家操作路径”为单位。</p>
-<h4 id="8-3-使用正确类型的物品实例"><a href="#8-3-使用正确类型的物品实例" class="headerlink" title="8.3 使用正确类型的物品实例"></a>8.3 使用正确类型的物品实例</h4><table>
-<thead>
-<tr>
-<th>场景</th>
-<th>做法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>测试槽位管理（不渲染）</td>
-<td><code>NewObject&lt;ULyraInventoryItemInstance&gt;()</code>（裸实例）</td>
-</tr>
-<tr>
-<td>测试装备切换（会触发 HUD）</td>
-<td><code>InventoryManager-&gt;AddItemDefinition(ItemDef)</code>（真实武器）</td>
-</tr>
-</tbody></table>
-<p><strong>判断依据</strong>：该物品是否会被 HUD &#x2F; 能力系统 &#x2F; 动画系统读到。会 → 用真实武器。不会 → 用裸实例。</p>
-<h4 id="8-4-测试方式选择：CQTest-vs-手工（决策）"><a href="#8-4-测试方式选择：CQTest-vs-手工（决策）" class="headerlink" title="8.4 测试方式选择：CQTest vs 手工（决策）"></a>8.4 测试方式选择：CQTest vs 手工（决策）</h4><p><strong>弃用蓝图功能测试。</strong> 实践结论：复杂逻辑（输入模拟 + 异步等待 + 状态断言）在 FunctionalTest 蓝图中难以编写和维护，调试效率低，无法帮助提高测试效率。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">C++ CQTest（重复性高的需求）:</span><br><span class="line">  输入模拟（按键/鼠标）→ 等待 → 状态断言：WF 射击/换弹、MV 移动/跳跃/蹲下、AM Dash</span><br><span class="line">  组件函数直接调用 → 数值断言：EQ 装备切换、WS 数值边界、NV 边界值</span><br><span class="line"></span><br><span class="line">手工测试（其余）:</span><br><span class="line">  需要视觉/手感/听感判断：动画、相机、HUD、音频、队伍、探索性</span><br></pre></td></tr></table></figure>
-
-<p>选择标准：<strong>用例是否会被反复回归执行 → 是 → CQTest；否 → 手工测试。</strong></p>
-<h4 id="8-5-降低集成测试噪音的方法"><a href="#8-5-降低集成测试噪音的方法" class="headerlink" title="8.5 降低集成测试噪音的方法"></a>8.5 降低集成测试噪音的方法</h4><ol>
-<li><strong>提供完整数据</strong> — 武器测试用 <code>CreateWeaponItem()</code>，避免裸实例触发 HUD 报错</li>
-<li><strong>创建极简 Experience</strong> — 减少不必要的子系统加载（如无 HUD 的测试 Experience）</li>
-<li><strong>收窄断言范围</strong> — 只断言你关心的值，日志中的无关错误作为噪音接受</li>
-</ol>
-<hr>
-<p><a id="doc-02"></a></p>
 <h2 id="用例分级清单-—-集成测试取舍"><a href="#用例分级清单-—-集成测试取舍" class="headerlink" title="用例分级清单 — 集成测试取舍"></a>用例分级清单 — 集成测试取舍</h2><blockquote>
 <p>依据《测试计划》§8.4 选择标准（是否会被反复回归执行）与”失败价值”筛选问题产出：</p>
 </blockquote>
@@ -1160,8 +422,8 @@
 </tr>
 <tr>
 <td>WF-01-03 移动射击</td>
-<td>保留为集成（低优先）</td>
-<td>移动中射击功能正常；散布放大部分并入 SP-03-04，避免重复</td>
+<td>蓝图功能测试（实际执行）</td>
+<td>移动中射击功能正常；散布放大部分并入 SP-03-04。宪章原标手工、清单原计划集成，最终以蓝图功能测试落地（记录偏差）</td>
 </tr>
 <tr>
 <td>WF-01-04 射击中被打断</td>
@@ -1522,7 +784,7 @@
 <li><strong>FR-01&#x2F;02 在 DT-01 &#x2F; DT-06 实现通过后移除</strong>，避免两套用例断言同一件事。</li>
 </ol>
 <hr>
-<p><a id="doc-03"></a></p>
+<p><a id="doc-02"></a></p>
 <h2 id="13-—-测试辅助-API-设计方案"><a href="#13-—-测试辅助-API-设计方案" class="headerlink" title="13 — 测试辅助 API 设计方案"></a>13 — 测试辅助 API 设计方案</h2><blockquote>
 <p>⚠️ <strong>状态：冻结（决策）</strong>：蓝图功能测试已弃用，回归 C++ CQTest + 手工。<br>本方案的”蓝图用轮子”设计前提不再成立（LyraTestUtilities 以 <code>BlueprintCallable</code> 蓝图分类优先）。<br>如需测试辅助 API，直接以 C++ 函数形式提供给 CQTest 使用，不再以蓝图分类为优先。<br>本文档仅作历史参考。</p>
 </blockquote>
@@ -1847,7 +1109,7 @@
 <hr>
 <p><em>文档结束</em></p>
 <hr>
-<p><a id="doc-04"></a></p>
+<p><a id="doc-03"></a></p>
 <h2 id="15-—-Lua-Test-DSL-设计方案（基于-LuaMachine）"><a href="#15-—-Lua-Test-DSL-设计方案（基于-LuaMachine）" class="headerlink" title="15 — Lua Test DSL 设计方案（基于 LuaMachine）"></a>15 — Lua Test DSL 设计方案（基于 LuaMachine）</h2><blockquote>
 <p>本文档记录 LuaMachine + Test DSL 测试框架的架构设计、实施阶段、验收标准与风险分析。<br>目标：用 Lua DSL 替代蓝图作为主力测试编写方式（80% Lua + 20% C++），蓝图退居辅助。<br>⚠️ v1.2 重大变更：底层 Lua 引擎从 UnLua 切换为 LuaMachine（复核发现 UnLua 不兼容 UE 5.8）。<br>本文档属于框架层面的设计方案，不涉及具体测试用例。</p>
 </blockquote>
@@ -1885,7 +1147,7 @@
 <td>仅作为桥梁，不改变蓝图编写模式</td>
 </tr>
 </tbody></table>
-<p><strong>设计出发点</strong>：C++ 造轮子，Lua 用轮子。流程控制内置于 DSL Runtime（参考 <a href="#doc-03">13-测试辅助API设计方案</a>）。</p>
+<p><strong>设计出发点</strong>：C++ 造轮子，Lua 用轮子。流程控制内置于 DSL Runtime（参考 <a href="#doc-02">13-测试辅助API设计方案</a>）。</p>
 <p>底层 Lua 引擎：**<a target="_blank" rel="noopener" href="https://github.com/rdeioris/LuaMachine">LuaMachine</a>**（活跃维护，支持 UE5，Luau 方言）。</p>
 <h4 id="1-2-动机"><a href="#1-2-动机" class="headerlink" title="1.2 动机"></a>1.2 动机</h4><p>蓝图功能测试在实际迭代中暴露<strong>致命问题</strong>，且随着测试规模膨胀愈演愈烈：</p>
 <table>
@@ -2056,7 +1318,7 @@
 <li>实现生命周期钩子：<code>before_all</code> &#x2F; <code>after_all</code> &#x2F; <code>before_each</code> &#x2F; <code>after_each</code></li>
 <li>实现参数化测试：<code>test.each(data)</code> 语法</li>
 <li>实现超时控制：默认 30 秒，可配置</li>
-<li>编写语法规范文档（独立章节，见 <a href="#doc-05">16-LuaDSL-API参考</a>）</li>
+<li>编写语法规范文档（独立章节，见 <a href="#doc-04">16-LuaDSL-API参考</a>）</li>
 </ul>
 <p><strong>DSL 示例</strong>：</p>
 <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> suite = TestSuite(<span class="string">&quot;武器系统&quot;</span>, &#123;</span><br><span class="line">    tags = &#123; <span class="string">&quot;weapon&quot;</span>, <span class="string">&quot;ammo&quot;</span>, <span class="string">&quot;smoke&quot;</span> &#125;,</span><br><span class="line">    timeout = <span class="number">30</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite:before_each</span><span class="params">(ctx)</span></span></span><br><span class="line">    ctx:LoadMap(<span class="string">&quot;/Game/Maps/L_Expanse&quot;</span>)</span><br><span class="line">    ctx.hero = ctx:SpawnHero()</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite:test_single_shot_ammo_consume</span><span class="params">(ctx)</span></span></span><br><span class="line">    ctx:GiveWeapon(<span class="string">&quot;WID_Rifle&quot;</span>)</span><br><span class="line">    <span class="keyword">local</span> before = ctx:GetAmmo()</span><br><span class="line">    ctx:Click(<span class="string">&quot;IA_Weapon_Fire&quot;</span>)</span><br><span class="line">    ctx:WaitFrames(<span class="number">5</span>)</span><br><span class="line">    ctx:expect(ctx:GetAmmo()):to_equal(before - <span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite:test_magazine_empty_reload</span><span class="params">(ctx)</span></span></span><br><span class="line">    ctx:GiveWeapon(<span class="string">&quot;WID_Rifle&quot;</span>)</span><br><span class="line">    <span class="keyword">local</span> mag = ctx:GetMagazine()</span><br><span class="line">    <span class="keyword">for</span> i = <span class="number">1</span>, mag <span class="keyword">do</span></span><br><span class="line">        ctx:Click(<span class="string">&quot;IA_Weapon_Fire&quot;</span>)</span><br><span class="line">        ctx:WaitFrames(<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    ctx:expect(ctx:GetAmmo()):to_equal(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">suite:run()</span><br></pre></td></tr></table></figure>
@@ -2601,11 +1863,11 @@
 </tr>
 </tbody></table>
 <hr>
-<p><em>文档结束。配套 API 参考见 <a href="#doc-05">16-LuaDSL-API参考</a>。</em></p>
+<p><em>文档结束。配套 API 参考见 <a href="#doc-04">16-LuaDSL-API参考</a>。</em></p>
 <hr>
-<p><a id="doc-05"></a></p>
+<p><a id="doc-04"></a></p>
 <h2 id="16-—-Lua-DSL-API-参考"><a href="#16-—-Lua-DSL-API-参考" class="headerlink" title="16 — Lua DSL API 参考"></a>16 — Lua DSL API 参考</h2><blockquote>
-<p>本文档是 Lua Test DSL 重写后的完整 API 参考手册。<br>新 API 按引擎底层概念组织为 <strong>7 个显式子命名空间</strong>，而非扁平的 ctx 方法。<br>原扁平 API（ctx:GetAmmo &#x2F; ctx:Click 等）已移除，迁移到 <code>ctx.input</code> &#x2F; <code>Helpers/*.lua</code>。<br>设计文档见 <a href="#doc-04">15-UnLuaTestDSL设计方案</a>。</p>
+<p>本文档是 Lua Test DSL 重写后的完整 API 参考手册。<br>新 API 按引擎底层概念组织为 <strong>7 个显式子命名空间</strong>，而非扁平的 ctx 方法。<br>原扁平 API（ctx:GetAmmo &#x2F; ctx:Click 等）已移除，迁移到 <code>ctx.input</code> &#x2F; <code>Helpers/*.lua</code>。<br>设计文档见 <a href="#doc-03">15-UnLuaTestDSL设计方案</a>。</p>
 </blockquote>
 <hr>
 <h3 id="1-快速开始"><a href="#1-快速开始" class="headerlink" title="1. 快速开始"></a>1. 快速开始</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Content/Scripts/Tests/Weapon/default_weapon_spec.lua</span></span><br><span class="line"><span class="keyword">local</span> TestRunner = <span class="built_in">require</span>(<span class="string">&quot;Tests.Core.TestRunner&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> WeaponHelper = <span class="built_in">require</span>(<span class="string">&quot;Tests.Helpers.WeaponHelper&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">local</span> suite = TestRunner.TestSuite(<span class="string">&quot;武器基础测试&quot;</span>, &#123;</span><br><span class="line">    tags = &#123; <span class="string">&quot;weapon&quot;</span>, <span class="string">&quot;smoke&quot;</span> &#125;,</span><br><span class="line">    timeout = <span class="number">30</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite:before_each</span><span class="params">(ctx)</span></span></span><br><span class="line">    <span class="keyword">local</span> pc = ctx.actor:GetPC()</span><br><span class="line">    ctx:WaitUntil(<span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">return</span> WeaponHelper.HasQuickBar(ctx, pc) <span class="keyword">end</span>, <span class="number">60</span>)</span><br><span class="line">    ctx.cheat:GiveWeapon(<span class="string">&quot;WID_Rifle&quot;</span>)</span><br><span class="line">    ctx:WaitFrames(<span class="number">30</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">suite:test_fire_consumes_one_ammo</span><span class="params">(ctx)</span></span></span><br><span class="line">    <span class="keyword">local</span> pc = ctx.actor:GetPC()</span><br><span class="line">    <span class="keyword">local</span> before = WeaponHelper.GetAmmo(ctx, pc)</span><br><span class="line">    ctx.<span class="built_in">input</span>:Click(<span class="string">&quot;IA_Weapon_Fire&quot;</span>)</span><br><span class="line">    ctx:WaitFrames(<span class="number">5</span>)</span><br><span class="line">    ctx:expect(WeaponHelper.GetAmmo(ctx, pc)):to_equal(before - <span class="number">1</span>)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">suite:run()</span><br></pre></td></tr></table></figure>
@@ -3602,11 +2864,11 @@
 </tr>
 </tbody></table>
 <hr>
-<p><em>文档结束。设计文档见 <a href="#doc-04">15-UnLuaTestDSL设计方案</a>。架构决策见 <code>docs/adr/0001-*.md</code> 和 <code>docs/adr/0002-*.md</code>。</em></p>
+<p><em>文档结束。设计文档见 <a href="#doc-03">15-UnLuaTestDSL设计方案</a>。架构决策见 <code>docs/adr/0001-*.md</code> 和 <code>docs/adr/0002-*.md</code>。</em></p>
 <hr>
-<p><a id="doc-06"></a></p>
+<p><a id="doc-05"></a></p>
 <h2 id="17-—-Lua-测试框架搭建复盘"><a href="#17-—-Lua-测试框架搭建复盘" class="headerlink" title="17 — Lua 测试框架搭建复盘"></a>17 — Lua 测试框架搭建复盘</h2><blockquote>
-<p>状态：复盘完成<br>结论：<strong>Lua（LuaMachine）测试框架方案已放弃</strong>，测试体系回归 C++ CQTest + 手工测试。<br>本文档是 <a href="#doc-04">15-UnLuaTestDSL设计方案</a>、<a href="#doc-05">16-LuaDSL-API参考</a>、<code>docs/adr/0001-*</code> &#x2F; <code>0002-*</code> 的收尾记录，仅作历史参考。</p>
+<p>状态：复盘完成<br>结论：<strong>Lua（LuaMachine）测试框架方案已放弃</strong>，测试体系回归 C++ CQTest + 手工测试。<br>本文档是 <a href="#doc-03">15-UnLuaTestDSL设计方案</a>、<a href="#doc-04">16-LuaDSL-API参考</a>、<code>docs/adr/0001-*</code> &#x2F; <code>0002-*</code> 的收尾记录，仅作历史参考。</p>
 </blockquote>
 <hr>
 <h3 id="0-一句话结论"><a href="#0-一句话结论" class="headerlink" title="0. 一句话结论"></a>0. 一句话结论</h3><p>在 LyraStarterGame 中用 Lua 搭建测试框架的尝试，最终在决策窗口终止。放弃的直接原因是：</p>
@@ -3617,7 +2879,7 @@
 </ol>
 <p>最终选择：放弃 Lua 方案，直接用 C++（CQTest）编写自动化测试。</p>
 <hr>
-<h3 id="1-背景与目标（当初为什么搭-Lua-测试框架）"><a href="#1-背景与目标（当初为什么搭-Lua-测试框架）" class="headerlink" title="1. 背景与目标（当初为什么搭 Lua 测试框架）"></a>1. 背景与目标（当初为什么搭 Lua 测试框架）</h3><p>蓝图功能测试（<code>AFunctionalTest</code>）在项目迭代中暴露了 5 个痛点（见 <a href="#doc-04">15-UnLuaTestDSL设计方案</a> §1.2）：</p>
+<h3 id="1-背景与目标（当初为什么搭-Lua-测试框架）"><a href="#1-背景与目标（当初为什么搭-Lua-测试框架）" class="headerlink" title="1. 背景与目标（当初为什么搭 Lua 测试框架）"></a>1. 背景与目标（当初为什么搭 Lua 测试框架）</h3><p>蓝图功能测试（<code>AFunctionalTest</code>）在项目迭代中暴露了 5 个痛点（见 <a href="#doc-03">15-UnLuaTestDSL设计方案</a> §1.2）：</p>
 <table>
 <thead>
 <tr>
@@ -3649,8 +2911,8 @@
 <p>由此提出 <strong>Lua DSL 方案</strong>，目标是把测试编写主力从蓝图换成 Lua：80% 测试用 Lua DSL（功能&#x2F;集成&#x2F;回归），20% 用 C++ CQTest（底层数值&#x2F;编译期检查），蓝图退居辅助。核心卖点是<strong>热重载、文本 diff、CI 友好</strong>。</p>
 <p>方案演进：</p>
 <ul>
-<li><a href="#doc-03">13-测试辅助API设计方案</a>：C++ 造轮子、<strong>蓝图</strong>用轮子 → LyraTestUtilities 函数库 + ECF 流程控制</li>
-<li><a href="#doc-04">15-UnLuaTestDSL设计方案</a>（v1.0 → v1.2）：C++ 造轮子、<strong>Lua</strong> 用轮子 → LuaMachine 桥接 + DSL Runtime（底层引擎从 UnLua 切换为 LuaMachine，因 UnLua 不兼容 UE 5.8）</li>
+<li><a href="#doc-02">13-测试辅助API设计方案</a>：C++ 造轮子、<strong>蓝图</strong>用轮子 → LyraTestUtilities 函数库 + ECF 流程控制</li>
+<li><a href="#doc-03">15-UnLuaTestDSL设计方案</a>（v1.0 → v1.2）：C++ 造轮子、<strong>Lua</strong> 用轮子 → LuaMachine 桥接 + DSL Runtime（底层引擎从 UnLua 切换为 LuaMachine，因 UnLua 不兼容 UE 5.8）</li>
 </ul>
 <hr>
 <h3 id="2-实际发生的时间线"><a href="#2-实际发生的时间线" class="headerlink" title="2. 实际发生的时间线"></a>2. 实际发生的时间线</h3><table>
@@ -3867,19 +3129,16 @@
 </tr>
 </tbody></table>
 <hr>
-<p><em>文档结束。关联设计文档：<a href="#doc-04">15-UnLuaTestDSL设计方案</a>、<a href="#doc-05">16-LuaDSL-API参考</a>、<a href="#doc-03">13-测试辅助API设计方案</a>。</em></p>
+<p><em>文档结束。关联设计文档：<a href="#doc-03">15-UnLuaTestDSL设计方案</a>、<a href="#doc-04">16-LuaDSL-API参考</a>、<a href="#doc-02">13-测试辅助API设计方案</a>。</em></p>
 <hr>
-<p><a id="doc-07"></a></p>
-<h2 id="Lyra-测试封板审查材料"><a href="#Lyra-测试封板审查材料" class="headerlink" title="Lyra 测试封板审查材料"></a>Lyra 测试封板审查材料</h2><blockquote>
-<p>目的：为封板审查环节提供一份<strong>可逐项核对的证据索引</strong>。审查人按第 7 节核对点逐项打勾；审查通过后，据此撰写《Lyra 测试总结报告》。</p>
-</blockquote>
-<blockquote>
-<p>项目：LyraStarterGame（UE 5.8）｜审查人：__________</p>
+<p><a id="doc-06"></a></p>
+<h2 id="Lyra-测试审查材料"><a href="#Lyra-测试审查材料" class="headerlink" title="Lyra 测试审查材料"></a>Lyra 测试审查材料</h2><blockquote>
+<p>目的：为封板环节提供一份<strong>可逐项核对的证据索引</strong>。审查人按第 7 节核对点逐项打勾；审查通过后，据此撰写《Lyra 测试总结报告》。</p>
 </blockquote>
 <hr>
 <h3 id="1-封板口径（审查基线）"><a href="#1-封板口径（审查基线）" class="headerlink" title="1. 封板口径（审查基线）"></a>1. 封板口径（审查基线）</h3><ul>
 <li><strong>功能封板</strong>（决策 A）：自动化 CQTest 全量通过（96&#x2F;96）+ 无 🔴 阻塞 Bug 即为封板；性能全量、探索性测试、DT-04 网络、SP 剩余子状态等无法在封板日完成的项目，显式列入《已知缺口 &#x2F; 封板后 backlog》（第 6 节），不影响封板声明。</li>
-<li>手工测试 Session 1~3 已完成。佐证：<code>TestDocs/Bug报告/</code> 4 份 Bug 报告 + <code>TestDocs/03-实施/14-蓝图功能测试实战-WF-01-01.md</code>。</li>
+<li>手工测试 Session 1~3 已完成。佐证：<code>TestDocs/Bug报告/</code> 13 份 Bug 报告 + <code>TestDocs/03-实施/14-蓝图功能测试实战-WF-01-01.md</code>（同步）。</li>
 <li>不推上线：本轮全部成果仅本地 commit。</li>
 </ul>
 <h3 id="2-自动化证据索引（96-96-全绿）"><a href="#2-自动化证据索引（96-96-全绿）" class="headerlink" title="2. 自动化证据索引（96&#x2F;96 全绿）"></a>2. 自动化证据索引（96&#x2F;96 全绿）</h3><table>
@@ -3961,7 +3220,7 @@
 <p>运行方式备注：</p>
 <ul>
 <li>批量回归顺序：Camera → Audio → Spread → Weapon → Control → Event → InitChain；每批前冷启编辑器，规避 L_Expanse socket &#x2F; DT-06 偶发 flake。</li>
-<li><strong>封板回归（已完成）</strong>：冷启动后全量复跑 <strong>96&#x2F;96 全绿</strong>；DT-06&#x2F;07 偶发失败已根因修复<br>（双重生 churn 抢占 PlayerState ASC + 死亡能力异步授予，见 19 号审查 A 类处置提交 <code>2f0b077</code>），<br>复跑 3 次隔离 + 套件内均绿；InitChain L_Expanse 5&#x2F;5 通过。</li>
+<li><strong>封板回归（已完成）</strong>：冷启动后全量复跑 <strong>96&#x2F;96 全绿</strong>；DT-06&#x2F;07 偶发失败为<strong>测试时序 flake，非游戏 bug</strong><br>（双重生 churn 抢占 PlayerState ASC + 死亡能力异步授予；该窗口被重生无敌 <code>Gameplay.DamageImmunity</code> 覆盖，<br>正常游玩不可复现，仅测试用自杀伤害穿透无敌可触发；测试侧加门禁后确定性通过，见 19 号审查 A 类处置提交 <code>2f0b077</code>），<br>复跑 3 次隔离 + 套件内均绿；InitChain L_Expanse 5&#x2F;5 通过。</li>
 </ul>
 <h3 id="3-手工证据索引"><a href="#3-手工证据索引" class="headerlink" title="3. 手工证据索引"></a>3. 手工证据索引</h3><table>
 <thead>
@@ -4139,7 +3398,7 @@
 </tr>
 </tbody></table>
 <hr>
-<p><a id="doc-08"></a></p>
+<p><a id="doc-07"></a></p>
 <h2 id="CQTest-代码审查报告"><a href="#CQTest-代码审查报告" class="headerlink" title="CQTest 代码审查报告"></a>CQTest 代码审查报告</h2><blockquote>
 <p>审查范围：Source&#x2F;LyraGame&#x2F;Tests&#x2F;CQTest&#x2F; 全部测试文件<br>审查类型：代码质量 + 测试有效性 + 稳定性 + 代码风格</p>
 </blockquote>
@@ -4339,14 +3598,14 @@
 <li>Source&#x2F;LyraGame&#x2F;Tests&#x2F;InitChain&#x2F;ShooterMapsInit.spec.cpp</li>
 </ul>
 <hr>
-<p><a id="doc-09"></a></p>
+<p><a id="doc-08"></a></p>
 <h2 id="Lyra-测试总结报告"><a href="#Lyra-测试总结报告" class="headerlink" title="Lyra 测试总结报告"></a>Lyra 测试总结报告</h2><blockquote>
-<p>项目：LyraStarterGame（UE 5.8）｜ 封板口径：<strong>功能封板</strong><br>前置材料：<a href="18-%E5%B0%81%E6%9D%BF%E5%AE%A1%E6%9F%A5%E6%9D%90%E6%96%99.md">18-封板审查材料.md</a>（证据索引）、<a href="19-CQTest%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5%E6%8A%A5%E5%91%8A.md">19-CQTest代码审查报告.md</a>（代码审查及 A1~A3 处置）</p>
+<p>项目：LyraStarterGame（UE 5.8）｜ 封板口径：<strong>功能封板</strong><br>前置材料：<a href="#doc-06">18-封板审查材料.md</a>（证据索引）、<a href="#doc-07">19-CQTest代码审查报告.md</a>（代码审查及 A1~A3 处置）</p>
 </blockquote>
 <hr>
 <h3 id="1-结论"><a href="#1-结论" class="headerlink" title="1. 结论"></a>1. 结论</h3><ul>
-<li>自动化 CQTest 全量 <strong>96&#x2F;96 全绿</strong>（7 套件；冷启动回归复跑确认，含 DT-06&#x2F;07 竞态修复后验证）</li>
-<li><strong>无 🔴 阻塞 Bug</strong>；4 份已知问题（🟡×3、🟢×1）随封板发布，不阻塞</li>
+<li>自动化 CQTest 全量 <strong>96&#x2F;96 全绿</strong>（7 套件； 冷启动回归复跑确认，含 DT-06&#x2F;07 测试时序加固后验证；该时序问题非游戏 bug，见 §4）</li>
+<li><strong>无 🔴 阻塞 Bug</strong>；13 份已知问题&#x2F;建议随封板发布，不阻塞（🟡×11、🟢×1、玩法建议×1；同步）</li>
 <li>手工测试 Session 1~3 已完成</li>
 <li><strong>允许功能封板</strong>；不推上线，成果本地 commit</li>
 </ul>
@@ -4412,8 +3671,9 @@
 <li><strong>Session 1</strong>（武器动画 WA-01<del>03、装备 EQ-01</del>05）：✅ 完成</li>
 <li><strong>Session 2</strong>（控制动画 AN-01、视角 LC-01、相机 CM-01&#x2F;02&#x2F;05）：✅ 完成</li>
 <li><strong>Session 3</strong>（HUD HD-01<del>05、队伍 TM-01</del>05、音频 AU-01~04）：✅ 完成</li>
+<li><strong>探索性 EX-01</strong>（地图互动效果：弹射器&#x2F;传送门&#x2F;手雷，90 分钟纯手工）：✅ 完成，发现 EX-01-01~04 + 关联 AM-02-06&#x2F;AM-03-06&#x2F;AM-04-01&#x2F;AU-05-01&#x2F;CM-06</li>
 <li>蓝图功能测试 WF-01-01<del>04 &#x2F; WF-02-01</del>03：✅ 完成（与宪章”CQTest 实现”不符 → 记录偏差，不补 CQTest）</li>
-<li>Bug 报告 4 份：装备动画时序、WF-02-04 换弹互斥、AM-03-05 Dash 行为不一致、NV-03-02 动画蓝图除零（CQTest 发现）</li>
+<li>Bug 报告 13 份（封板时 4 份 + EX-01 及后续新增 9 份）：装备动画时序、WF-02-04 换弹互斥、AM-03-05 Dash 行为不一致、NV-03-02 动画蓝图除零（CQTest 发现）、AM-02-06、AM-03-06、AM-04-01、AU-05-01、CM-06、EX-01-01~04</li>
 </ul>
 <h3 id="4-测试侧修复与硬化（本周期）"><a href="#4-测试侧修复与硬化（本周期）" class="headerlink" title="4. 测试侧修复与硬化（本周期）"></a>4. 测试侧修复与硬化（本周期）</h3><table>
 <thead>
@@ -4435,11 +3695,14 @@
 <td>NV_05_01 恒真等待→帧计数；EQ_02_05 断言与注释对齐；EQ_03 Sleep→轮询</td>
 </tr>
 <tr>
-<td><strong>DT-06&#x2F;07 重生 churn 竞态修复</strong></td>
-<td>封板回归中发现：双重生 Pawn 抢占 PlayerState ASC + 死亡能力异步授予，导致”血量归零但死亡状态不转换”；加 3 帧稳定&#x2F;一致性&#x2F;死亡能力门禁后确定性通过（DT_07 连跑 3 次 + 套件内均绿）</td>
+<td><strong>DT-06&#x2F;07 重生时序 flake（非游戏 bug）</strong></td>
+<td>封板回归中偶发：双重生 Pawn 抢占 PlayerState ASC + 死亡能力异步授予，若在初始化窗口内结算致死伤害会”血量归零但死亡状态不转换”。该窗口被重生无敌（<code>Gameplay.DamageImmunity</code> &#x2F; <code>GE_SpawnIn</code>）覆盖，正常伤害被归零、玩家不可复现；仅测试用自杀伤害（<code>DamageSelfDestruct</code>，穿透无敌）可触发。测试侧加 3 帧稳定&#x2F;一致性&#x2F;死亡能力门禁后确定性通过（DT_07 连跑 3 次 + 套件内均绿），生产代码未改动（勘误）</td>
 </tr>
 </tbody></table>
-<h3 id="5-已知问题（随封板发布，无-🔴-阻塞）"><a href="#5-已知问题（随封板发布，无-🔴-阻塞）" class="headerlink" title="5. 已知问题（随封板发布，无 🔴 阻塞）"></a>5. 已知问题（随封板发布，无 🔴 阻塞）</h3><table>
+<h3 id="5-已知问题（随封板发布，无-🔴-阻塞）"><a href="#5-已知问题（随封板发布，无-🔴-阻塞）" class="headerlink" title="5. 已知问题（随封板发布，无 🔴 阻塞）"></a>5. 已知问题（随封板发布，无 🔴 阻塞）</h3><blockquote>
+<p>完整清单见 <a href="#doc-28"><code>Bug报告/00-Bug清单.md</code></a>（汇总）。</p>
+</blockquote>
+<table>
 <thead>
 <tr>
 <th>编号</th>
@@ -4472,6 +3735,60 @@
 <td>🟢 一般</td>
 <td>手工</td>
 </tr>
+<tr>
+<td>AM-03-06</td>
+<td>无方向 Dash 仅在特定朝向触发</td>
+<td>🟡 严重（非阻塞）</td>
+<td>手工（EX-01 关联）</td>
+</tr>
+<tr>
+<td>AM-02-06</td>
+<td>滞空时按下蹲被忽略</td>
+<td>🟡 中</td>
+<td>手工</td>
+</tr>
+<tr>
+<td>AM-04-01</td>
+<td>近战中输入射击被忽略</td>
+<td>🟡 中</td>
+<td>手工</td>
+</tr>
+<tr>
+<td>AU-05-01</td>
+<td>贴脸时敌人枪声变沉闷</td>
+<td>🟡 中</td>
+<td>手工（EX-01 关联）</td>
+</tr>
+<tr>
+<td>CM-06</td>
+<td>瞄准时无方向 Dash 相机缩放与准心闪变</td>
+<td>🟡 中</td>
+<td>手工（EX-01 关联）</td>
+</tr>
+<tr>
+<td>EX-01-01</td>
+<td>Dash 中触发弹射器力度被削弱</td>
+<td>🟡 中</td>
+<td>探索性 EX-01</td>
+</tr>
+<tr>
+<td>EX-01-02</td>
+<td>方向弹射器按玩家朝向弹射</td>
+<td>🟡 中</td>
+<td>探索性 EX-01</td>
+</tr>
+<tr>
+<td>EX-01-03</td>
+<td>手雷可触发弹射装置（玩法建议）</td>
+<td>⚪ 建议</td>
+<td>探索性 EX-01</td>
+</tr>
+<tr>
+<td>EX-01-04</td>
+<td>传送门仅下半部分可触发传送</td>
+<td>🟡 中</td>
+<td>探索性 EX-01</td>
+</tr>
 </tbody></table>
 <h3 id="6-已知缺口-封板后-backlog-1"><a href="#6-已知缺口-封板后-backlog-1" class="headerlink" title="6. 已知缺口 &#x2F; 封板后 backlog"></a>6. 已知缺口 &#x2F; 封板后 backlog</h3><table>
 <thead>
@@ -4490,7 +3807,11 @@
 </tr>
 <tr>
 <td>探索性测试</td>
-<td>6 轮 × 90 分钟</td>
+<td>余 5 轮 × 90 分钟（EX-01 ✅ 已完成）</td>
+</tr>
+<tr>
+<td>手工用例缺口</td>
+<td>AM-02-05、AM-03（部分子状态）、NV-02、NV-04、DT-02-02、DT-05-04 未作为独立用例正式执行（AM-03 相关项已有 Bug 报告）</td>
 </tr>
 <tr>
 <td>SP 剩余子状态</td>
@@ -4502,7 +3823,7 @@
 </tr>
 <tr>
 <td>环境 flake 防护</td>
-<td>DT-06 移动输入解锁超时、L_Expanse socket_send_failure（冷启动复跑可过；DT-06 竞态已修复，方法留档）</td>
+<td>DT-06 移动输入解锁超时、L_Expanse socket_send_failure（冷启动复跑可过；DT-06 时序 flake 已加固，非游戏 bug，方法留档）</td>
 </tr>
 </tbody></table>
 <h3 id="7-交付物与记录"><a href="#7-交付物与记录" class="headerlink" title="7. 交付物与记录"></a>7. 交付物与记录</h3><ul>
@@ -4512,7 +3833,7 @@
 <li>Git：本地 master（不 push）；关键提交 <code>4670919</code>（审查材料）、<code>2f0b077</code>（A1~A3 + DT-06&#x2F;07 修复）</li>
 </ul>
 <hr>
-<p><a id="doc-10"></a></p>
+<p><a id="doc-09"></a></p>
 <h2 id="武器与装备系统-—-测试宪章"><a href="#武器与装备系统-—-测试宪章" class="headerlink" title="武器与装备系统 — 测试宪章"></a>武器与装备系统 — 测试宪章</h2><h3 id="测试范围"><a href="#测试范围" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -4534,7 +3855,7 @@
 <tr>
 <td>3</td>
 <td><strong>武器数值</strong></td>
-<td>自动化测试，距离衰减&#x2F;射速&#x2F;弹药量&#x2F;部位伤害，共 4 个用例（含 14 个子状态）</td>
+<td>自动化测试，距离衰减&#x2F;射速&#x2F;弹药量&#x2F;部位伤害，共 4 个用例（含 15 个子状态）</td>
 </tr>
 <tr>
 <td>4</td>
@@ -4577,13 +3898,13 @@
 </tr>
 <tr>
 <td>武器功能 (WF)</td>
-<td>WF-01-03</td>
+<td>无（WF-01-03 由蓝图功能测试覆盖）</td>
 <td>WF-01-01、WF-01-02、WF-02（含8个子状态）</td>
 </tr>
 <tr>
 <td>武器数值 (WS)</td>
 <td>无</td>
-<td>4 个全部（含 14 个子状态）</td>
+<td>4 个全部（含 15 个子状态）</td>
 </tr>
 <tr>
 <td>武器动画 (WA)</td>
@@ -5106,7 +4427,7 @@
 <p>⚠️ WA-02 风险：换弹动画与实际弹药恢复可能不同步（动画播完但弹药未恢复，或弹药恢复但动画未播完），测试时关注操作时机的准确性</p>
 </blockquote>
 <hr>
-<p><a id="doc-11"></a></p>
+<p><a id="doc-10"></a></p>
 <h2 id="控制系统-—-测试宪章"><a href="#控制系统-—-测试宪章" class="headerlink" title="控制系统 — 测试宪章"></a>控制系统 — 测试宪章</h2><h3 id="测试范围-1"><a href="#测试范围-1" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -5880,7 +5201,7 @@
 
 
 <hr>
-<p><a id="doc-12"></a></p>
+<p><a id="doc-11"></a></p>
 <h2 id="相机系统-—-测试宪章"><a href="#相机系统-—-测试宪章" class="headerlink" title="相机系统 — 测试宪章"></a>相机系统 — 测试宪章</h2><h3 id="测试范围-2"><a href="#测试范围-2" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -5892,7 +5213,7 @@
 <tbody><tr>
 <td>1</td>
 <td><strong>第三人称跟随</strong> 🖐️</td>
-<td>相机跟随 + 旋转 + 环绕，共 1 个用例（含 5 个子状态）</td>
+<td>相机跟随 + 旋转，共 1 个用例（含 4 个子状态）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -5950,7 +5271,7 @@
 </thead>
 <tbody><tr>
 <td>第三人称跟随 (CM-01)</td>
-<td>1 个全部（含 5 个子状态）</td>
+<td>1 个全部（含 4 个子状态）</td>
 <td>无</td>
 </tr>
 <tr>
@@ -5983,7 +5304,7 @@
 <blockquote>
 <p>🎯 用例目的图例：🔵 冒烟（环境&#x2F;链路基线，失败优先怀疑测试环境）｜🟢 回归（防回归保护）｜⚪ 回归·单元（数值&#x2F;配置校验，降级为单元级断言，不走 PIE）｜🟠 验收（功能可用性&#x2F;视觉手感，开发手测等价物）｜🚫 已并入或删除（见《用例分级清单》）</p>
 </blockquote>
-<h3 id="1-第三人称跟随（1-个用例，含-5-个子状态）"><a href="#1-第三人称跟随（1-个用例，含-5-个子状态）" class="headerlink" title="1. 第三人称跟随（1 个用例，含 5 个子状态）"></a>1. 第三人称跟随（1 个用例，含 5 个子状态）</h3><h5 id="CM-01-第三人称跟随"><a href="#CM-01-第三人称跟随" class="headerlink" title="CM-01 第三人称跟随"></a>CM-01 第三人称跟随</h5><table>
+<h3 id="1-第三人称跟随（1-个用例，含-4-个子状态）"><a href="#1-第三人称跟随（1-个用例，含-4-个子状态）" class="headerlink" title="1. 第三人称跟随（1 个用例，含 4 个子状态）"></a>1. 第三人称跟随（1 个用例，含 4 个子状态）</h3><h5 id="CM-01-第三人称跟随"><a href="#CM-01-第三人称跟随" class="headerlink" title="CM-01 第三人称跟随"></a>CM-01 第三人称跟随</h5><table>
 <thead>
 <tr>
 <th>编号</th>
@@ -6260,7 +5581,7 @@
 
 
 <hr>
-<p><a id="doc-13"></a></p>
+<p><a id="doc-12"></a></p>
 <h2 id="HUD-—-测试宪章"><a href="#HUD-—-测试宪章" class="headerlink" title="HUD — 测试宪章"></a>HUD — 测试宪章</h2><h3 id="测试范围-3"><a href="#测试范围-3" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -6272,7 +5593,7 @@
 <tbody><tr>
 <td>1</td>
 <td><strong>准星</strong> 🖐️</td>
-<td>不同武器的准星样式、散布缩放反馈，共 1 个用例（含 6 个子状态）</td>
+<td>不同武器的准星样式、散布缩放反馈，共 1 个用例（含 5 个子状态）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -6321,7 +5642,7 @@
 </thead>
 <tbody><tr>
 <td>准星 (HD-01)</td>
-<td>1 个全部（含 6 个子状态）</td>
+<td>1 个全部（含 5 个子状态）</td>
 <td>无</td>
 </tr>
 <tr>
@@ -6349,7 +5670,7 @@
 <blockquote>
 <p>🎯 用例目的图例：🔵 冒烟（环境&#x2F;链路基线，失败优先怀疑测试环境）｜🟢 回归（防回归保护）｜⚪ 回归·单元（数值&#x2F;配置校验，降级为单元级断言，不走 PIE）｜🟠 验收（功能可用性&#x2F;视觉手感，开发手测等价物）｜🚫 已并入或删除（见《用例分级清单》）</p>
 </blockquote>
-<h3 id="1-准星（1-个用例，含-6-个子状态）"><a href="#1-准星（1-个用例，含-6-个子状态）" class="headerlink" title="1. 准星（1 个用例，含 6 个子状态）"></a>1. 准星（1 个用例，含 6 个子状态）</h3><h5 id="HD-01-准星显示"><a href="#HD-01-准星显示" class="headerlink" title="HD-01 准星显示"></a>HD-01 准星显示</h5><table>
+<h3 id="1-准星（1-个用例，含-5-个子状态）"><a href="#1-准星（1-个用例，含-5-个子状态）" class="headerlink" title="1. 准星（1 个用例，含 5 个子状态）"></a>1. 准星（1 个用例，含 5 个子状态）</h3><h5 id="HD-01-准星显示"><a href="#HD-01-准星显示" class="headerlink" title="HD-01 准星显示"></a>HD-01 准星显示</h5><table>
 <thead>
 <tr>
 <th>编号</th>
@@ -6628,7 +5949,7 @@
 <p>比分板测试已移至队伍系统</p>
 </blockquote>
 <hr>
-<p><a id="doc-14"></a></p>
+<p><a id="doc-13"></a></p>
 <h2 id="前端页面-—-测试宪章"><a href="#前端页面-—-测试宪章" class="headerlink" title="前端页面 — 测试宪章"></a>前端页面 — 测试宪章</h2><h3 id="测试范围-4"><a href="#测试范围-4" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -6950,7 +6271,7 @@
 
 
 <hr>
-<p><a id="doc-15"></a></p>
+<p><a id="doc-14"></a></p>
 <h2 id="音频系统-—-测试宪章"><a href="#音频系统-—-测试宪章" class="headerlink" title="音频系统 — 测试宪章"></a>音频系统 — 测试宪章</h2><h3 id="测试范围-5"><a href="#测试范围-5" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -7271,7 +6592,7 @@
 
 
 <hr>
-<p><a id="doc-16"></a></p>
+<p><a id="doc-15"></a></p>
 <h2 id="队伍系统-—-测试宪章"><a href="#队伍系统-—-测试宪章" class="headerlink" title="队伍系统 — 测试宪章"></a>队伍系统 — 测试宪章</h2><h3 id="测试范围-6"><a href="#测试范围-6" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -7568,7 +6889,7 @@
 <p>🚫 删除说明：游戏不存在队伍数量配置参数，NV-01-01~04 全部移除。</p>
 </blockquote>
 <hr>
-<p><a id="doc-17"></a></p>
+<p><a id="doc-16"></a></p>
 <h2 id="初始化链路系统-—-测试宪章"><a href="#初始化链路系统-—-测试宪章" class="headerlink" title="初始化链路系统 — 测试宪章"></a>初始化链路系统 — 测试宪章</h2><h3 id="测试范围-7"><a href="#测试范围-7" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -7919,7 +7240,7 @@
 
 
 <hr>
-<p><a id="doc-18"></a></p>
+<p><a id="doc-17"></a></p>
 <h2 id="状态系统-—-测试宪章"><a href="#状态系统-—-测试宪章" class="headerlink" title="状态系统 — 测试宪章"></a>状态系统 — 测试宪章</h2><blockquote>
 <p>🚫 <strong>已砍（决策）：状态系统不再单独测试。</strong><br>血量&#x2F;死亡相关验证并入事件测试（DT-01 血量归零触发死亡）；本文档仅作历史参考，不实现 ST&#x2F;NV CQTest。</p>
 </blockquote>
@@ -8167,7 +7488,7 @@
 
 
 <hr>
-<p><a id="doc-19"></a></p>
+<p><a id="doc-18"></a></p>
 <h2 id="事件测试-—-测试宪章"><a href="#事件测试-—-测试宪章" class="headerlink" title="事件测试 — 测试宪章"></a>事件测试 — 测试宪章</h2><h3 id="测试范围-9"><a href="#测试范围-9" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -8579,7 +7900,10 @@
 <p>⚠️ DT-07-01 风险：重生→死亡的快速转换可能导致 Ability System 或 Spawner 状态机未正确重置</p>
 </blockquote>
 <blockquote>
-<p>🚫 删除说明：DT-05-05（死亡时被推开，碰撞已禁用前提不成立）、DT-07-02（复活点”安全区域”预期无依据）、DT-07-03（复活无敌帧，Lyra 无此设计）为早期不确定内容，已删除。</p>
+<p>🚫 删除说明：DT-05-05（死亡时被推开，碰撞已禁用前提不成立）、DT-07-02（复活点”安全区域”预期无依据）、DT-07-03（复活无敌帧，早期不确定内容）已删除。</p>
+</blockquote>
+<blockquote>
+<p>🔧 勘误：DT-07-03 原删除理由”复活无敌帧，Lyra 无此设计”表述错误——游戏实际存在重生无敌（<code>Gameplay.DamageImmunity</code> 标签，由 ShooterCore <code>GE_SpawnIn</code> &#x2F; <code>GA_SpawnEffect</code> 授予，<code>ULyraHealthSet::PreGameplayEffectExecute</code> 将非自杀伤害归零）。因此 DT-07-01”重生后立即死亡”在正常伤害下不可触发（无敌窗口覆盖重生初始化窗口），测试使用自杀伤害（<code>DamageSelfDestruct</code>，穿透无敌）驱动该场景；DT-06&#x2F;07 发现的时序问题属测试侧 flake，非游戏 bug。</p>
 </blockquote>
 <h3 id="3-散布系统"><a href="#3-散布系统" class="headerlink" title="3. 散布系统"></a>3. 散布系统</h3><blockquote>
 <p>📦 后续排期：本次交付不含散布系统，用例保留。</p>
@@ -8898,7 +8222,7 @@
 
 
 <hr>
-<p><a id="doc-20"></a></p>
+<p><a id="doc-19"></a></p>
 <h2 id="性能测试-—-测试宪章"><a href="#性能测试-—-测试宪章" class="headerlink" title="性能测试 — 测试宪章"></a>性能测试 — 测试宪章</h2><h3 id="测试范围-10"><a href="#测试范围-10" class="headerlink" title="测试范围"></a>测试范围</h3><table>
 <thead>
 <tr>
@@ -9091,7 +8415,7 @@
 </tr>
 </tbody></table>
 <hr>
-<p><a id="doc-21"></a></p>
+<p><a id="doc-20"></a></p>
 <h2 id="探索性测试"><a href="#探索性测试" class="headerlink" title="探索性测试"></a>探索性测试</h2><p>⏱ 90 分钟 · 手工 · 以玩家视角自由探索，发现组合场景下的 bug</p>
 <h3 id="测试范围-11"><a href="#测试范围-11" class="headerlink" title="测试范围"></a>测试范围</h3><p>探索时重点关注 <strong>跨系统交互</strong> 和 <strong>边界操作</strong>，而非单功能验证。</p>
 <h3 id="记录方式"><a href="#记录方式" class="headerlink" title="记录方式"></a>记录方式</h3><p>发现 bug 时记录：</p>
@@ -9101,7 +8425,7 @@
 <li><strong>预期结果</strong>（应该是什么）</li>
 </ol>
 <hr>
-<p><a id="doc-22"></a></p>
+<p><a id="doc-21"></a></p>
 <h2 id="性能测试（Gauntlet）可行性调研"><a href="#性能测试（Gauntlet）可行性调研" class="headerlink" title="性能测试（Gauntlet）可行性调研"></a>性能测试（Gauntlet）可行性调研</h2><blockquote>
 <p>产出，来源均为本地引擎&#x2F;仓库一手资料（见文末”来源”）。供《测试计划》阶段四 PF-01~12 的排期与封板决策引用。</p>
 </blockquote>
@@ -9214,13 +8538,13 @@
 <li><code>UE_5.8\Engine\Plugins\Performance\AutomatedPerfTesting\</code>（UE5.8 逐帧性能测试插件与 GauntletSettings 模板）</li>
 </ul>
 <hr>
-<p><a id="doc-23"></a></p>
+<p><a id="doc-22"></a></p>
 <h2 id="EX-01-探索性测试宪章-—-地图互动效果"><a href="#EX-01-探索性测试宪章-—-地图互动效果" class="headerlink" title="EX-01 探索性测试宪章 — 地图互动效果"></a>EX-01 探索性测试宪章 — 地图互动效果</h2><p><strong>目标</strong>：以玩家视角探索互动测试地图上的互动效果，发现异常。</p>
 <p><strong>形式</strong>：90 分钟 · 纯手工 · 记录</p>
 <p><strong>纯手工</strong>：只用键鼠&#x2F;手柄和肉眼观察，不用脚本、控制台、调试工具；需要工具确认的怀疑点记入 backlog。</p>
 <p><strong>记录</strong>：做了什么 &#x2F; 实际结果 &#x2F; 预期结果 &#x2F; 环境与节奏；Bug 编号 EX-01-xx。</p>
 <hr>
-<p><a id="doc-24"></a></p>
+<p><a id="doc-23"></a></p>
 <h2 id="EX-01-会话记录-—-地图互动效果"><a href="#EX-01-会话记录-—-地图互动效果" class="headerlink" title="EX-01 会话记录 — 地图互动效果"></a>EX-01 会话记录 — 地图互动效果</h2><p><strong>会话</strong>: EX-01 ｜ 形式：90 分钟 · 纯手工 ｜ 主题：地图互动效果（弹射器、传送门、手雷）</p>
 <h3 id="要素清单"><a href="#要素清单" class="headerlink" title="要素清单"></a>要素清单</h3><ul>
 <li>弹射器-向上</li>
@@ -9304,7 +8628,7 @@
 </tr>
 </tbody></table>
 <hr>
-<p><a id="doc-25"></a></p>
+<p><a id="doc-24"></a></p>
 <h2 id="EX-01-探索小结-—-地图互动效果"><a href="#EX-01-探索小结-—-地图互动效果" class="headerlink" title="EX-01 探索小结 — 地图互动效果"></a>EX-01 探索小结 — 地图互动效果</h2><p><strong>会话</strong>: EX-01 ｜ 地图互动效果 ｜ 90 分钟 · 纯手工</p>
 <h3 id="发现列表"><a href="#发现列表" class="headerlink" title="发现列表"></a>发现列表</h3><table>
 <thead>
@@ -9357,7 +8681,7 @@
 <li>EX-01-01 冲刺与弹射器的优先级处理（修复时做）</li>
 </ul>
 <hr>
-<p><a id="doc-26"></a></p>
+<p><a id="doc-25"></a></p>
 <h2 id="测试实施指南"><a href="#测试实施指南" class="headerlink" title="测试实施指南"></a>测试实施指南</h2><blockquote>
 <p>本文档涵盖测试环境搭建、自动化工具选择、Bug 报告模板。属于实施层面的指导，不涉及具体测试用例。</p>
 </blockquote>
@@ -9552,7 +8876,7 @@
 </tr>
 </tbody></table>
 <hr>
-<p><a id="doc-27"></a></p>
+<p><a id="doc-26"></a></p>
 <h2 id="蓝图功能测试实战：WF-01-01-单发武器射击"><a href="#蓝图功能测试实战：WF-01-01-单发武器射击" class="headerlink" title="蓝图功能测试实战：WF-01-01 单发武器射击"></a>蓝图功能测试实战：WF-01-01 单发武器射击</h2><blockquote>
 <p>⚠️ <strong>已废弃（决策）</strong>：蓝图功能测试已弃用，回归 C++ CQTest（重复性高的用例），其余用手工测试。<br>复杂逻辑（输入模拟 + 异步等待 + 状态断言）在蓝图中难以编写和维护。<br>本文档仅作历史参考，不再作为实施指南；WF-01&#x2F;02 改用 <code>Source/LyraGame/Tests/CQTest/WeaponSystem_Fire.spec.cpp</code>（CQTest + InputTestActions）实现。</p>
 </blockquote>
@@ -9775,7 +9099,7 @@
 
 <p>打开项目自带的 <code>L_ShooterTest_FT_SingleShot</code>（或 <code>B_Test_FireWeapon</code> 蓝图）边看边做，它是你最好的老师。注意：原 <code>L_ShooterTest_FireWeapon</code> 地图已拆分为 6 个独立测试地图，每个地图仅含 1 个测试 Actor，避免各测试互相影响。</p>
 <hr>
-<p><a id="doc-28"></a></p>
+<p><a id="doc-27"></a></p>
 <h2 id="测试工作流清单"><a href="#测试工作流清单" class="headerlink" title="测试工作流清单"></a>测试工作流清单</h2><blockquote>
 <p>从《测试计划》§5.5 抽出独立成文：执行按分级、管理按模块的具体落地。<br>按<strong>触发时机</strong>组织为可打勾的工作清单，每个事件附<strong>具体用例索引</strong>，可照着直接执行。<br>用例编号统一遵循各系统宪章（EQ&#x2F;WF&#x2F;WS&#x2F;MV&#x2F;AM&#x2F;NV&#x2F;CM&#x2F;HD&#x2F;FE&#x2F;AU&#x2F;TM&#x2F;IN&#x2F;DT&#x2F;SP&#x2F;PF）。</p>
 </blockquote>
@@ -9787,11 +9111,11 @@
 </ul>
 <p><strong>本事件用例（⚪ 回归·单元）</strong></p>
 <ul>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/01-%E6%AD%A6%E5%99%A8%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F.md">武器数值</a>：WS-01（距离衰减曲线）、WS-02（射速配置）、WS-03（弹药量）、WS-04-01&#x2F;02&#x2F;04（部位伤害倍率校验）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/02-%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.md">控制数值</a>：NV-01-01&#x2F;02（跳跃速度 clamp）、NV-03-01&#x2F;02（重力 clamp）、NV-05-01&#x2F;02（MaxWalkSpeed clamp）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/03-%E7%9B%B8%E6%9C%BA%E7%B3%BB%E7%BB%9F.md">相机数值</a>：NV-01（FOV clamp）、NV-02（俯仰限幅）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/06-%E9%9F%B3%E9%A2%91%E7%B3%BB%E7%BB%9F.md">音频数值</a>：NV-01（音量边界）、NV-02（通道独立）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/10-%E4%BA%8B%E4%BB%B6%E6%B5%8B%E8%AF%95.md">事件数值</a>：SP-01-03（HeatPerShot&#x3D;0）、SP-02-01（曲线求值）、SP-05-03（冷却延迟负值）、SP-06-01（SpreadExponent&#x3D;0）</li>
+<li><a href="#doc-09">武器数值</a>：WS-01（距离衰减曲线）、WS-02（射速配置）、WS-03（弹药量）、WS-04-01&#x2F;02&#x2F;04（部位伤害倍率校验）</li>
+<li><a href="#doc-10">控制数值</a>：NV-01-01&#x2F;02（跳跃速度 clamp）、NV-03-01&#x2F;02（重力 clamp）、NV-05-01&#x2F;02（MaxWalkSpeed clamp）</li>
+<li><a href="#doc-11">相机数值</a>：NV-01（FOV clamp）、NV-02（俯仰限幅）</li>
+<li><a href="#doc-14">音频数值</a>：NV-01（音量边界）、NV-02（通道独立）</li>
+<li><a href="#doc-18">事件数值</a>：SP-01-03（HeatPerShot&#x3D;0）、SP-02-01（曲线求值）、SP-05-03（冷却延迟负值）、SP-06-01（SpreadExponent&#x3D;0）</li>
 </ul>
 <h3 id="事件-B：每次合并-构建（CI）"><a href="#事件-B：每次合并-构建（CI）" class="headerlink" title="事件 B：每次合并 &#x2F; 构建（CI）"></a>事件 B：每次合并 &#x2F; 构建（CI）</h3><ul>
 <li><input disabled="" type="checkbox"> 🔵 冒烟全绿（环境 &#x2F; 链路基线：地图加载、Pawn 生成、输入链路）<ul>
@@ -9806,10 +9130,10 @@
 </ul>
 <p><strong>本事件用例 — 冒烟（🔵）</strong></p>
 <ul>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/08-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%93%BE%E8%B7%AF%E7%B3%BB%E7%BB%9F.md">初始化链路</a>：IN-01-01&#x2F;02（进程启动 &#x2F; Experience 加载）、IN-02-01~03（Pawn &#x2F; AbilitySet &#x2F; 默认武器）、IN-04-01&#x2F;02（输入绑定）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/05-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2.md">前端页面</a>：FE-02-01&#x2F;02（主菜单 → 进入对局）、FE-05-01&#x2F;02（加载链路）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/01-%E6%AD%A6%E5%99%A8%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F.md">武器</a>：EQ-01（初始武器）、WF-01-01（单发射击）</li>
-<li><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/02-%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.md">控制</a>：MV-01（方向移动）、AM-01-01（平地跳跃）</li>
+<li><a href="#doc-16">初始化链路</a>：IN-01-01&#x2F;02（进程启动 &#x2F; Experience 加载）、IN-02-01~03（Pawn &#x2F; AbilitySet &#x2F; 默认武器）、IN-04-01&#x2F;02（输入绑定）</li>
+<li><a href="#doc-13">前端页面</a>：FE-02-01&#x2F;02（主菜单 → 进入对局）、FE-05-01&#x2F;02（加载链路）</li>
+<li><a href="#doc-09">武器</a>：EQ-01（初始武器）、WF-01-01（单发射击）</li>
+<li><a href="#doc-10">控制</a>：MV-01（方向移动）、AM-01-01（平地跳跃）</li>
 </ul>
 <p><strong>本事件用例 — 回归（🟢，全量）</strong></p>
 <table>
@@ -9820,23 +9144,23 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/01-%E6%AD%A6%E5%99%A8%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F.md">武器</a></td>
+<td><a href="#doc-09">武器</a></td>
 <td>EQ-02-01<del>05、EQ-03</del>05、WF-01-01&#x2F;-03、WF-02-01&#x2F;-02&#x2F;-04、WS-04-03</td>
 </tr>
 <tr>
-<td><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/02-%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.md">控制</a></td>
+<td><a href="#doc-10">控制</a></td>
 <td>MV-01&#x2F;-03、AM-01-01&#x2F;-02&#x2F;-04&#x2F;-05、AM-02-01~04</td>
 </tr>
 <tr>
-<td><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/05-%E5%89%8D%E7%AB%AF%E9%A1%B5%E9%9D%A2.md">前端</a></td>
+<td><a href="#doc-13">前端</a></td>
 <td>FE-02-03~05、FE-03、FE-04、FE-05-03、FE-06</td>
 </tr>
 <tr>
-<td><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/08-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%93%BE%E8%B7%AF%E7%B3%BB%E7%BB%9F.md">初始化</a></td>
+<td><a href="#doc-16">初始化</a></td>
 <td>IN-01-03、IN-02-04~06、IN-03、IN-05、NV-01</td>
 </tr>
 <tr>
-<td><a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/10-%E4%BA%8B%E4%BB%B6%E6%B5%8B%E8%AF%95.md">事件</a></td>
+<td><a href="#doc-18">事件</a></td>
 <td>DT-01、DT-03、DT-05-01&#x2F;-03、DT-06、DT-07-01、SP-01-01&#x2F;-02&#x2F;-04、SP-02-02&#x2F;-03、SP-03、SP-04、SP-05-01&#x2F;-02、SP-06-02&#x2F;-03</td>
 </tr>
 </tbody></table>
@@ -9857,9 +9181,9 @@
 </ul>
 <p><strong>本事件用例 — 验收（🟠，手工）</strong></p>
 <ul>
-<li>Session 1 核心视觉：<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/01-%E6%AD%A6%E5%99%A8%E4%B8%8E%E8%A3%85%E5%A4%87%E7%B3%BB%E7%BB%9F.md">武器</a> WA-01<del>03（装备 &#x2F; 换弹 &#x2F; 射击动画）、EQ-01</del>05（装备动作手感）</li>
-<li>Session 2 移动体验：<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/02-%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.md">控制</a> AN-01-01<del>05（移动动画）、LC-01-01</del>03&#x2F;-05（视角）、AM-02-05（矮通道）、AM-03-01~06（Dash）；<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/03-%E7%9B%B8%E6%9C%BA%E7%B3%BB%E7%BB%9F.md">相机</a> CM-01&#x2F;02&#x2F;05（跟随 &#x2F; 碰撞 &#x2F; 蹲下偏移）</li>
-<li>Session 3 UI 与信息：<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/04-HUD.md">HUD</a> HD-01<del>05；<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/07-%E9%98%9F%E4%BC%8D%E7%B3%BB%E7%BB%9F.md">队伍</a> TM-01</del>05；<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/06-%E9%9F%B3%E9%A2%91%E7%B3%BB%E7%BB%9F.md">音频</a> AU-01~04；<a href="../01-%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95/10-%E4%BA%8B%E4%BB%B6%E6%B5%8B%E8%AF%95.md">事件</a> DT-02-02（重生后摄像机恢复）、DT-05-04（Dash 中死亡）</li>
+<li>Session 1 核心视觉：<a href="#doc-09">武器</a> WA-01<del>03（装备 &#x2F; 换弹 &#x2F; 射击动画）、EQ-01</del>05（装备动作手感）</li>
+<li>Session 2 移动体验：<a href="#doc-10">控制</a> AN-01-01<del>05（移动动画）、LC-01-01</del>03&#x2F;-05（视角）、AM-02-05（矮通道）、AM-03-01~06（Dash）；<a href="#doc-11">相机</a> CM-01&#x2F;02&#x2F;05（跟随 &#x2F; 碰撞 &#x2F; 蹲下偏移）</li>
+<li>Session 3 UI 与信息：<a href="#doc-12">HUD</a> HD-01<del>05；<a href="#doc-15">队伍</a> TM-01</del>05；<a href="#doc-14">音频</a> AU-01~04；<a href="#doc-18">事件</a> DT-02-02（重生后摄像机恢复）、DT-05-04（Dash 中死亡）</li>
 </ul>
 <h3 id="事件-D：发布前（最后一关）"><a href="#事件-D：发布前（最后一关）" class="headerlink" title="事件 D：发布前（最后一关）"></a>事件 D：发布前（最后一关）</h3><ul>
 <li><input disabled="" type="checkbox"> 功能冻结确认（探索期间不再改功能）</li>
@@ -9873,12 +9197,12 @@
 </ul>
 <p><strong>本事件用例 — 探索（🟣）</strong></p>
 <ul>
-<li>6 轮聚焦模块见<a href="../02-%E4%B8%93%E9%A1%B9%E6%B5%8B%E8%AF%95/11-%E6%8E%A2%E7%B4%A2%E6%80%A7%E6%B5%8B%E8%AF%95.md">探索性测试宪章</a>：武器+控制+状态 &#x2F; 控制+相机+HUD &#x2F; 队伍+武器+HUD &#x2F; 前端+初始化链路 &#x2F; 状态+初始化链路 &#x2F; 音频+武器+控制</li>
+<li>6 轮聚焦模块见<a href="#doc-20">探索性测试宪章</a>：武器+控制+状态 &#x2F; 控制+相机+HUD &#x2F; 队伍+武器+HUD &#x2F; 前端+初始化链路 &#x2F; 状态+初始化链路 &#x2F; 音频+武器+控制</li>
 <li>每轮结束回流决策：可复现且值得保护 → 固化为宪章用例（标 🟢 &#x2F; 🟠）；一次性 → 留 Bug 报告</li>
 </ul>
 <p><strong>本事件用例 — 性能（🟢）</strong></p>
 <ul>
-<li>PF-01<del>03（30 &#x2F; 60 &#x2F; 120fps 功能与帧时间）、PF-04&#x2F;05（帧率波动 &#x2F; 骤降恢复）、PF-06</del>10（50~500ms 延迟与抖动）、PF-11&#x2F;12（内存 &#x2F; 帧时间门禁）——见<a href="../02-%E4%B8%93%E9%A1%B9%E6%B5%8B%E8%AF%95/10-%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95.md">性能测试宪章</a></li>
+<li>PF-01<del>03（30 &#x2F; 60 &#x2F; 120fps 功能与帧时间）、PF-04&#x2F;05（帧率波动 &#x2F; 骤降恢复）、PF-06</del>10（50~500ms 延迟与抖动）、PF-11&#x2F;12（内存 &#x2F; 帧时间门禁）——见<a href="#doc-19">性能测试宪章</a></li>
 </ul>
 <h3 id="分级执行矩阵（速查）"><a href="#分级执行矩阵（速查）" class="headerlink" title="分级执行矩阵（速查）"></a>分级执行矩阵（速查）</h3><table>
 <thead>
@@ -9950,6 +9274,197 @@
 <td>什么时机做什么动作（流程：打勾执行）</td>
 </tr>
 </tbody></table>
+<hr>
+<p><a id="doc-28"></a></p>
+<h2 id="Bug-清单（汇总）"><a href="#Bug-清单（汇总）" class="headerlink" title="Bug 清单（汇总）"></a>Bug 清单（汇总）</h2><blockquote>
+<p>生成：｜ 数据源：<code>TestDocs/Bug报告/</code> 全部 13 份报告<br>统计：共 <strong>13 项</strong>（Bug 12 · 玩法建议 1）｜ 🔴 阻塞 <strong>0</strong> ｜ 🟡 11（含严重 3）｜ 🟢 1 ｜ ⚪ 建议 1</p>
+</blockquote>
+<hr>
+<h3 id="1-按系统分布"><a href="#1-按系统分布" class="headerlink" title="1. 按系统分布"></a>1. 按系统分布</h3><table>
+<thead>
+<tr>
+<th>系统</th>
+<th>数量</th>
+<th>编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>控制系统</td>
+<td>5</td>
+<td>AM-02-06、AM-03-05、AM-03-06、AM-04-01、NV-03-02</td>
+</tr>
+<tr>
+<td>地图互动（探索性 EX-01）</td>
+<td>4</td>
+<td>EX-01-01 ~ EX-01-04</td>
+</tr>
+<tr>
+<td>武器与装备</td>
+<td>2</td>
+<td>WF-02-04、装备动画</td>
+</tr>
+<tr>
+<td>相机系统</td>
+<td>1</td>
+<td>CM-06</td>
+</tr>
+<tr>
+<td>音频系统</td>
+<td>1</td>
+<td>AU-05-01</td>
+</tr>
+</tbody></table>
+<h3 id="2-按来源分布"><a href="#2-按来源分布" class="headerlink" title="2. 按来源分布"></a>2. 按来源分布</h3><table>
+<thead>
+<tr>
+<th>来源</th>
+<th>数量</th>
+<th>编号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>探索性测试 EX-01（含同日关联发现）</td>
+<td>9</td>
+<td>EX-01-01~04、AM-02-06、AM-03-06、AM-04-01、AU-05-01、CM-06</td>
+</tr>
+<tr>
+<td>手工 Session（封板前）</td>
+<td>3</td>
+<td>AM-03-05、WF-02-04、装备动画</td>
+</tr>
+<tr>
+<td>CQTest</td>
+<td>1</td>
+<td>NV-03-02</td>
+</tr>
+</tbody></table>
+<h3 id="3-清单"><a href="#3-清单" class="headerlink" title="3. 清单"></a>3. 清单</h3><table>
+<thead>
+<tr>
+<th>编号</th>
+<th>标题</th>
+<th>等级</th>
+<th>系统</th>
+<th>来源</th>
+<th>关联</th>
+<th>状态&#x2F;处置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AM-03-06</td>
+<td>无方向 Dash 仅在面向特定 1&#x2F;4 方向时触发</td>
+<td>🟡 严重</td>
+<td>控制系统</td>
+<td>EX-01</td>
+<td>宪章 AM-03-06 &#x2F; <code>GA_Hero_Dash</code></td>
+<td>待修复（探索小结列为优先项）</td>
+</tr>
+<tr>
+<td>AM-03-05</td>
+<td>Dash 中操作行为不一致（蹲下排队 &#x2F; 切装打断 &#x2F; 射击·跳跃·近战·手雷无效）</td>
+<td>🟡 严重</td>
+<td>控制系统</td>
+<td>手工 Session 2</td>
+<td>宪章 AM-03-05 &#x2F; <code>GA_Hero_Dash</code></td>
+<td>待修复（输入策略需决策：全部忽略 &#x2F; 排队 &#x2F; 打断）</td>
+</tr>
+<tr>
+<td>WF-02-04</td>
+<td>射击途中换弹被静默拒绝</td>
+<td>🟡 严重</td>
+<td>武器</td>
+<td>手工补验</td>
+<td>WF-02-01 &#x2F; WF-02-05</td>
+<td>待修复（换弹应中断射击）</td>
+</tr>
+<tr>
+<td>AM-02-06</td>
+<td>滞空时按下蹲被忽略（应触发或排队到落地）</td>
+<td>🟡 中</td>
+<td>控制系统</td>
+<td>EX-01 关联</td>
+<td>宪章 AM-02 &#x2F; AM-03-05</td>
+<td>待修复（与 AM-03-05 输入策略同源）</td>
+</tr>
+<tr>
+<td>AM-04-01</td>
+<td>近战中输入射击被忽略（应排队或触发）</td>
+<td>🟡 中</td>
+<td>控制系统</td>
+<td>EX-01 关联</td>
+<td><code>GA_Melee</code> &#x2F; AM-03-05</td>
+<td>待修复（输入策略统一；可补充 AM-04 系列宪章）</td>
+</tr>
+<tr>
+<td>NV-03-02</td>
+<td>GravityScale&#x3D;0 悬浮时 ABP_Mannequin_Base 动画蓝图除零</td>
+<td>🟡 中</td>
+<td>控制系统</td>
+<td>CQTest</td>
+<td>宪章 NV-03-02</td>
+<td>待修复（低优先，非阻塞 Warning，动画蓝图加 SafeDivide）</td>
+</tr>
+<tr>
+<td>CM-06</td>
+<td>瞄准中无方向 Dash 相机缩放与准心闪变（约 0.5s 恢复）</td>
+<td>🟡 中</td>
+<td>相机</td>
+<td>EX-01 关联</td>
+<td>CM-03 删除需重审 &#x2F; AM-03-06</td>
+<td>待修复（与 AM-03-06 同源，建议一并验证）</td>
+</tr>
+<tr>
+<td>AU-05-01</td>
+<td>贴脸时敌人枪声变沉闷（俯视角触发，听感像远处）</td>
+<td>🟡 中</td>
+<td>音频</td>
+<td>EX-01 关联</td>
+<td>AU-05 新增（可补宪章用例）</td>
+<td>待修复（衰减按角色位置或钳制垂直分量）</td>
+</tr>
+<tr>
+<td>EX-01-01</td>
+<td>Dash 中触发弹射器时弹射力度被大幅削弱</td>
+<td>🟡 中</td>
+<td>地图互动</td>
+<td>EX-01</td>
+<td><code>B_Launcher_Up/Push</code> &#x2F; <code>GA_Hero_Dash</code></td>
+<td>待修复（弹射优先级高于 Dash &#x2F; 先打断再弹射）</td>
+</tr>
+<tr>
+<td>EX-01-02</td>
+<td>方向弹射器按玩家朝向弹射，而非速度&#x2F;移动方向</td>
+<td>🟡 中</td>
+<td>地图互动</td>
+<td>EX-01</td>
+<td><code>B_Launcher_Push</code></td>
+<td>待设计确认（若”沿面朝方向”为预期则非 Bug）</td>
+</tr>
+<tr>
+<td>EX-01-04</td>
+<td>传送门仅下半部分可触发传送，与全高模型不符</td>
+<td>🟡 中</td>
+<td>地图互动</td>
+<td>EX-01</td>
+<td><code>B_Teleport</code></td>
+<td>待修复（碰撞范围与可视模型对齐）</td>
+</tr>
+<tr>
+<td>装备动画</td>
+<td>装备时武器先显示后播放拿出动作（先出现→消失→再出现）</td>
+<td>🟢 一般</td>
+<td>武器</td>
+<td>手工 Session 1</td>
+<td>WA-01</td>
+<td>待修复（mesh 显示与 Equip montage Notify 同步）</td>
+</tr>
+</tbody></table>
+<h3 id="4-备注"><a href="#4-备注" class="headerlink" title="4. 备注"></a>4. 备注</h3><ul>
+<li>无 🔴 阻塞级问题，不影响功能封板。</li>
+<li><strong>输入策略类问题同源</strong>：AM-02-06、AM-03-05、AM-04-01、WF-02-04 均属”进行中动作期间的被拒绝输入”处理不一致（忽略 &#x2F; 排队 &#x2F; 打断三种策略混用），建议统一为一种策略后一并回归。</li>
+<li><strong>Dash 链路问题同源</strong>：AM-03-06（无方向 Dash 激活不稳定）、CM-06（瞄准中 Dash 相机闪变）、EX-01-01（Dash 中弹射力度被削）都与 <code>GA_Hero_Dash</code> 激活&#x2F;根运动流程相关，建议修复时一起验证。</li>
+<li>EX-01-02（弹射方向）待设计确认；EX-01-03（手雷弹射）为玩法建议，均入 backlog，不阻塞。</li>
+</ul>
 <hr>
 <p><a id="doc-29"></a></p>
 <h3 id="Bug-报告"><a href="#Bug-报告" class="headerlink" title="Bug 报告"></a>Bug 报告</h3><p><strong>标题</strong>: [地图互动] Dash 中触发弹射器时弹射力度被大幅削弱（音效正常）<br><strong>等级</strong>: 🟡 中（非阻塞 · 组合边界场景）</p>
@@ -10221,7 +9736,7 @@
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Go/"><span class="card-category-list-name">Go</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Linux/"><span class="card-category-list-name">Linux</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E7%A8%8B/"><span class="card-category-list-name">工程</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="card-category-list-name">测试</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90/"><span class="card-category-list-name">游戏分析</span><span class="card-category-list-count">3</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Ebitengine/" style="font-size: 1.1em; color: #999">Ebitengine</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 1.3em; color: #99a1ac">方法论</a> <a href="/tags/Dota-2/" style="font-size: 1.1em; color: #999">Dota 2</a> <a href="/tags/%E4%BA%8C%E6%B8%B8/" style="font-size: 1.1em; color: #999">二游</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">测试</a> <a href="/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/" style="font-size: 1.1em; color: #999">混沌工程</a> <a href="/tags/%E5%B7%A5%E7%A8%8B/" style="font-size: 1.3em; color: #99a1ac">工程</a> <a href="/tags/CS2/" style="font-size: 1.1em; color: #999">CS2</a> <a href="/tags/Game/" style="font-size: 1.1em; color: #999">Game</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%AE%A1%E7%90%86/" style="font-size: 1.1em; color: #999">测试管理</a> <a href="/tags/Lua/" style="font-size: 1.1em; color: #999">Lua</a> <a href="/tags/CodeTraining/" style="font-size: 1.1em; color: #999">CodeTraining</a> <a href="/tags/DSL/" style="font-size: 1.1em; color: #999">DSL</a> <a href="/tags/%E5%95%86%E4%B8%9A%E5%8C%96/" style="font-size: 1.3em; color: #99a1ac">商业化</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/Mod/" style="font-size: 1.1em; color: #999">Mod</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/" style="font-size: 1.3em; color: #99a1ac">游戏测试</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.5em; color: #99a9bf">游戏开发</a> <a href="/tags/GO/" style="font-size: 1.3em; color: #99a1ac">GO</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">自动化测试</a> <a href="/tags/%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">匹配系统</a> <a href="/tags/CQTest/" style="font-size: 1.1em; color: #999">CQTest</a> <a href="/tags/%E7%8E%A9%E5%AE%B6%E5%BF%83%E7%90%86/" style="font-size: 1.1em; color: #999">玩家心理</a> <a href="/tags/F2P/" style="font-size: 1.1em; color: #999">F2P</a> <a href="/tags/Elo/" style="font-size: 1.1em; color: #999">Elo</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">测试框架</a> <a href="/tags/Unreal-Engine/" style="font-size: 1.5em; color: #99a9bf">Unreal Engine</a> <a href="/tags/%E5%A4%8D%E7%9B%98/" style="font-size: 1.1em; color: #999">复盘</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90/" style="font-size: 1.5em; color: #99a9bf">游戏分析</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">游戏设计</a> <a href="/tags/DOTA2/" style="font-size: 1.1em; color: #999">DOTA2</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">全栈测试</a> <a href="/tags/%E4%BB%98%E8%B4%B9%E8%AE%BE%E8%AE%A1/" style="font-size: 1.3em; color: #99a1ac">付费设计</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">六月 2026</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">12</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">31.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-05T04:16:04.213Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/site/banner.webp')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Kurami Wan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/lib/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="156013738" data-server="netease" data-type="album" data-fixed="true" data-autoplay="false" data-lrcType="-1"> </div><link rel="stylesheet" href="/lib/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="/lib/aplayer/APlayer.min.js"></script><script src="/lib/meting/Meting.min.js"></script><script src="/lib/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E7%8E%A9%E5%AE%B6%E5%BF%83%E7%90%86/" style="font-size: 1.1em; color: #999">玩家心理</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 1.5em; color: #99a9bf">游戏开发</a> <a href="/tags/DOTA2/" style="font-size: 1.1em; color: #999">DOTA2</a> <a href="/tags/Ebitengine/" style="font-size: 1.1em; color: #999">Ebitengine</a> <a href="/tags/CQTest/" style="font-size: 1.1em; color: #999">CQTest</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95/" style="font-size: 1.3em; color: #99a1ac">游戏测试</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 1.3em; color: #99a1ac">方法论</a> <a href="/tags/Dota-2/" style="font-size: 1.1em; color: #999">Dota 2</a> <a href="/tags/%E5%85%A8%E6%A0%88%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">全栈测试</a> <a href="/tags/CodeTraining/" style="font-size: 1.1em; color: #999">CodeTraining</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">测试</a> <a href="/tags/%E5%95%86%E4%B8%9A%E5%8C%96/" style="font-size: 1.3em; color: #99a1ac">商业化</a> <a href="/tags/%E6%B7%B7%E6%B2%8C%E5%B7%A5%E7%A8%8B/" style="font-size: 1.1em; color: #999">混沌工程</a> <a href="/tags/%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F/" style="font-size: 1.1em; color: #999">匹配系统</a> <a href="/tags/Unreal-Engine/" style="font-size: 1.5em; color: #99a9bf">Unreal Engine</a> <a href="/tags/%E4%BB%98%E8%B4%B9%E8%AE%BE%E8%AE%A1/" style="font-size: 1.3em; color: #99a1ac">付费设计</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 1.1em; color: #999">工具</a> <a href="/tags/DSL/" style="font-size: 1.1em; color: #999">DSL</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6/" style="font-size: 1.1em; color: #999">测试框架</a> <a href="/tags/CS2/" style="font-size: 1.1em; color: #999">CS2</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90/" style="font-size: 1.5em; color: #99a9bf">游戏分析</a> <a href="/tags/Lua/" style="font-size: 1.1em; color: #999">Lua</a> <a href="/tags/F2P/" style="font-size: 1.1em; color: #999">F2P</a> <a href="/tags/%E5%B7%A5%E7%A8%8B/" style="font-size: 1.3em; color: #99a1ac">工程</a> <a href="/tags/Game/" style="font-size: 1.1em; color: #999">Game</a> <a href="/tags/Linux/" style="font-size: 1.1em; color: #999">Linux</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1/" style="font-size: 1.1em; color: #999">游戏设计</a> <a href="/tags/%E6%B5%8B%E8%AF%95%E7%AE%A1%E7%90%86/" style="font-size: 1.1em; color: #999">测试管理</a> <a href="/tags/GO/" style="font-size: 1.3em; color: #99a1ac">GO</a> <a href="/tags/Elo/" style="font-size: 1.1em; color: #999">Elo</a> <a href="/tags/%E4%BA%8C%E6%B8%B8/" style="font-size: 1.1em; color: #999">二游</a> <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/" style="font-size: 1.1em; color: #999">自动化测试</a> <a href="/tags/Mod/" style="font-size: 1.1em; color: #999">Mod</a> <a href="/tags/%E5%A4%8D%E7%9B%98/" style="font-size: 1.1em; color: #999">复盘</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/08/"><span class="card-archive-list-date">八月 2026</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2026/06/"><span class="card-archive-list-date">六月 2026</span><span class="card-archive-list-count">4</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/07/"><span class="card-archive-list-date">七月 2025</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/09/"><span class="card-archive-list-date">九月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/08/"><span class="card-archive-list-date">八月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/02/"><span class="card-archive-list-date">二月 2024</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/01/"><span class="card-archive-list-date">一月 2024</span><span class="card-archive-list-count">2</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">12</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">31.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-08-06T03:33:14.065Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/site/banner.webp')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2026 By Kurami Wan</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/lib/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><div class="aplayer no-destroy" data-id="156013738" data-server="netease" data-type="album" data-fixed="true" data-autoplay="false" data-lrcType="-1"> </div><link rel="stylesheet" href="/lib/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="/lib/aplayer/APlayer.min.js"></script><script src="/lib/meting/Meting.min.js"></script><script src="/lib/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
 var pjax = new Pjax({
   elements: 'a:not([target="_blank"])',
